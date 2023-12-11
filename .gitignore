@@ -1,0 +1,9 @@
+.DS_Store
+node_modules
+package-lock.json
+!public/images
+!public/css
+!public/favicon.ico
+!public/index.html
+!public/js
+.env
