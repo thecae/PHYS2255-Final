@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slider-thumb::-webkit-slider-thumb {
+  @apply bg-nightfall-comment;
+}
+
+.slider-thumb::-moz-range-thumb {
+  @apply bg-nightfall-comment;
+}
+
+.slider-track::-webkit-slider-runnable-track {
+  @apply bg-nightfall-highlight rounded-2xl shadow-sm shadow-nightfall-comment;
+}
+
+.slider-track::-moz-range-track {
+  @apply bg-nightfall-highlight rounded-2xl shadow-sm shadow-nightfall-comment;
+}
+
+.slider-track::-moz-focus-outer {
+  border: 0;
+}
+
+.slider-track::-moz-focus-inner {
+  border: 0;
+}

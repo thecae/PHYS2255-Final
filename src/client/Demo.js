@@ -1,14 +1,22 @@
 // Demo.js
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 
 // components
 import createClock from "./components/Clock.js";
+import VelocitySlider from "./components/Slider.js";
 
 const Three = () => {
   const mountRef = useRef(null);
   // clock storage
   let hh, mm, ss;
+  // velocity storage
+  const [velocity, setVelocity] = useState(0);
+
+  const handleVelocity = (value) => {
+    setVelocity(value);
+    console.log('velocity', value);
+  };
 
   useEffect(() => {
     // Scene, camera, and renderer setup
@@ -64,7 +72,11 @@ const Three = () => {
     };
   }, []);
 
-  return <div ref={mountRef} />;
+  return (
+    <div ref={mountRef}>
+      <VelocitySlider onVelocityChange={handleVelocity} />
+    </div>
+  );
 };
 
 export default Three;
