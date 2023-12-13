@@ -47,7 +47,7 @@ const createClock = () => {
   second.rotation.z = -(time.getSeconds() / 60) * Math.PI * 2;
 
   const xOffset = window.innerWidth / 175;
-  const yOffset = -window.innerHeight / 190;
+  const yOffset = -(window.innerHeight - 44) / 190;
   clock.position.set(xOffset, yOffset, 0);
 
   return {
