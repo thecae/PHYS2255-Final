@@ -45090,8 +45090,7 @@ var createClock = () => {
   const centerMaterial = new MeshBasicMaterial({ color: 0 });
   const center = new Mesh(centerGeometry, centerMaterial);
   clock.add(center);
-  const time = /* @__PURE__ */ new Date();
-  second.rotation.z = -(time.getSeconds() / 60) * Math.PI * 2;
+  second.rotation.z = 0;
   const xOffset = window.innerWidth / 175;
   const yOffset = -(window.innerHeight - 44) / 190;
   clock.position.set(xOffset, yOffset, 0);
@@ -45151,13 +45150,16 @@ var Three = () => {
     const { clock, second } = Clock_default();
     ss = second;
     scene.add(clock);
+    let lastTime = Date.now();
     camera.position.z = 10;
     const animate = function() {
       requestAnimationFrame(animate);
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.01;
-      const time = /* @__PURE__ */ new Date();
-      ss.rotation.z = -(time.getSeconds() / 60) * Math.PI * 2;
+      const currentTime = Date.now();
+      const deltaTime = (currentTime - lastTime) / 1e3;
+      lastTime = currentTime;
+      ss.rotation.z -= deltaTime * (2 * Math.PI / 60);
       renderer.render(scene, camera);
     };
     animate();

@@ -42,6 +42,7 @@ const Three = () => {
     const { clock, second } = createClock();
     ss = second;
     scene.add(clock);
+    let lastTime = Date.now();
 
     camera.position.z = 10;
 
@@ -54,8 +55,10 @@ const Three = () => {
       cube.rotation.y += 0.01;
 
       // clock rotation
-      const time = new Date();
-      ss.rotation.z = -(time.getSeconds() / 60) * Math.PI * 2;
+      const currentTime = Date.now();
+      const deltaTime = (currentTime - lastTime) / 1000;
+      lastTime = currentTime;
+      ss.rotation.z -= deltaTime * (2 * Math.PI / 60);
 
       renderer.render(scene, camera);
     };
