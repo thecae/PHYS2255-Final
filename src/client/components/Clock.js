@@ -27,23 +27,17 @@ const createClock = () => {
   clock.add(face);
 
   // hands
-  const hour = createHand(1, 0.2, 0x000000);
-  const minute = createHand(1.5, 0.15, 0x000000);
   const second = createHand(1.8, 0.1, 0xff0000);
-  clock.add(hour);
-  clock.add(minute);
   clock.add(second);
 
   // small circle at the base
-  const centerGeometry = new THREE.CircleGeometry(0.2, 32);
+  const centerGeometry = new THREE.CircleGeometry(0.1, 32);
   const centerMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
   const center = new THREE.Mesh(centerGeometry, centerMaterial);
   clock.add(center);
 
   // set initial rotation
   const time = new Date();
-  hour.rotation.z = -((time.getHours() % 12) / 12) * Math.PI * 2;
-  minute.rotation.z = -(time.getMinutes() / 60) * Math.PI * 2;
   second.rotation.z = -(time.getSeconds() / 60) * Math.PI * 2;
 
   const xOffset = window.innerWidth / 175;
@@ -52,8 +46,6 @@ const createClock = () => {
 
   return {
     clock: clock,
-    hour: hour,
-    minute: minute,
     second: second,
   };
 };

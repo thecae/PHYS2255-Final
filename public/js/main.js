@@ -45084,27 +45084,19 @@ var createClock = () => {
   const material = new MeshBasicMaterial({ color: 16777215 });
   const face = new Mesh(geometry, material);
   clock.add(face);
-  const hour = createHand(1, 0.2, 0);
-  const minute = createHand(1.5, 0.15, 0);
   const second = createHand(1.8, 0.1, 16711680);
-  clock.add(hour);
-  clock.add(minute);
   clock.add(second);
-  const centerGeometry = new CircleGeometry(0.2, 32);
+  const centerGeometry = new CircleGeometry(0.1, 32);
   const centerMaterial = new MeshBasicMaterial({ color: 0 });
   const center = new Mesh(centerGeometry, centerMaterial);
   clock.add(center);
   const time = /* @__PURE__ */ new Date();
-  hour.rotation.z = -(time.getHours() % 12 / 12) * Math.PI * 2;
-  minute.rotation.z = -(time.getMinutes() / 60) * Math.PI * 2;
   second.rotation.z = -(time.getSeconds() / 60) * Math.PI * 2;
   const xOffset = window.innerWidth / 175;
   const yOffset = -(window.innerHeight - 44) / 190;
   clock.position.set(xOffset, yOffset, 0);
   return {
     clock,
-    hour,
-    minute,
     second
   };
 };
@@ -45134,7 +45126,7 @@ var Slider_default = VelocitySlider;
 // src/client/Demo.js
 var Three = () => {
   const mountRef = (0, import_react2.useRef)(null);
-  let hh, mm, ss;
+  let ss;
   const [velocity, setVelocity] = (0, import_react2.useState)(0);
   const handleVelocity = (value) => {
     setVelocity(value);
@@ -45156,9 +45148,7 @@ var Three = () => {
     const material = new MeshBasicMaterial({ color: 65280 });
     const cube = new Mesh(geometry, material);
     scene.add(cube);
-    const { clock, hour, minute, second } = Clock_default();
-    hh = hour;
-    mm = minute;
+    const { clock, second } = Clock_default();
     ss = second;
     scene.add(clock);
     camera.position.z = 10;
@@ -45167,8 +45157,6 @@ var Three = () => {
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.01;
       const time = /* @__PURE__ */ new Date();
-      hh.rotation.z = -(time.getHours() % 12 / 12) * Math.PI * 2;
-      mm.rotation.z = -(time.getMinutes() / 60) * Math.PI * 2;
       ss.rotation.z = -(time.getSeconds() / 60) * Math.PI * 2;
       renderer.render(scene, camera);
     };

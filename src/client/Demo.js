@@ -9,13 +9,13 @@ import VelocitySlider from "./components/Slider.js";
 const Three = () => {
   const mountRef = useRef(null);
   // clock storage
-  let hh, mm, ss;
+  let ss;
   // velocity storage
   const [velocity, setVelocity] = useState(0);
 
   const handleVelocity = (value) => {
     setVelocity(value);
-    console.log('velocity', value);
+    console.log("velocity", value);
   };
 
   useEffect(() => {
@@ -39,9 +39,7 @@ const Three = () => {
     scene.add(cube);
 
     // Clock setup
-    const { clock, hour, minute, second } = createClock();
-    hh = hour;
-    mm = minute;
+    const { clock, second } = createClock();
     ss = second;
     scene.add(clock);
 
@@ -57,8 +55,6 @@ const Three = () => {
 
       // clock rotation
       const time = new Date();
-      hh.rotation.z = -((time.getHours() % 12) / 12) * Math.PI * 2;
-      mm.rotation.z = -(time.getMinutes() / 60) * Math.PI * 2;
       ss.rotation.z = -(time.getSeconds() / 60) * Math.PI * 2;
 
       renderer.render(scene, camera);
