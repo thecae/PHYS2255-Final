@@ -1083,7 +1083,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context);
         }
-        function useState2(initialState) {
+        function useState3(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -1095,7 +1095,7 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
-        function useEffect2(create, deps) {
+        function useEffect3(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useEffect(create, deps);
         }
@@ -1877,7 +1877,7 @@ var require_react_development = __commonJS({
         exports.useContext = useContext;
         exports.useDebugValue = useDebugValue;
         exports.useDeferredValue = useDeferredValue;
-        exports.useEffect = useEffect2;
+        exports.useEffect = useEffect3;
         exports.useId = useId;
         exports.useImperativeHandle = useImperativeHandle;
         exports.useInsertionEffect = useInsertionEffect;
@@ -1885,7 +1885,7 @@ var require_react_development = __commonJS({
         exports.useMemo = useMemo;
         exports.useReducer = useReducer;
         exports.useRef = useRef2;
-        exports.useState = useState2;
+        exports.useState = useState3;
         exports.useSyncExternalStore = useSyncExternalStore;
         exports.useTransition = useTransition;
         exports.version = ReactVersion;
@@ -2381,9 +2381,9 @@ var require_react_dom_development = __commonJS({
         if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
           __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
         }
-        var React4 = require_react();
+        var React5 = require_react();
         var Scheduler = require_scheduler();
-        var ReactSharedInternals = React4.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         var suppressWarning = false;
         function setSuppressWarning(newSuppressWarning) {
           {
@@ -3988,7 +3988,7 @@ var require_react_dom_development = __commonJS({
           {
             if (props.value == null) {
               if (typeof props.children === "object" && props.children !== null) {
-                React4.Children.forEach(props.children, function(child) {
+                React5.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -12435,7 +12435,7 @@ var require_react_dom_development = __commonJS({
           }
         }
         var fakeInternalInstance = {};
-        var emptyRefsObject = new React4.Component().refs;
+        var emptyRefsObject = new React5.Component().refs;
         var didWarnAboutStateAssignmentForComponent;
         var didWarnAboutUninitializedState;
         var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -24284,11 +24284,11 @@ var require_prop_types = __commonJS({
 });
 
 // src/client/main.js
-var import_react3 = __toESM(require_react());
+var import_react4 = __toESM(require_react());
 var import_client = __toESM(require_client());
 
 // src/client/Demo.js
-var import_react2 = __toESM(require_react());
+var import_react3 = __toESM(require_react());
 
 // node_modules/three/build/three.module.js
 var REVISION = "159";
@@ -24966,17 +24966,17 @@ var Matrix3 = class _Matrix3 {
     return this;
   }
   transpose() {
-    let tmp2;
+    let tmp;
     const m = this.elements;
-    tmp2 = m[1];
+    tmp = m[1];
     m[1] = m[3];
-    m[3] = tmp2;
-    tmp2 = m[2];
+    m[3] = tmp;
+    tmp = m[2];
     m[2] = m[6];
-    m[6] = tmp2;
-    tmp2 = m[5];
+    m[6] = tmp;
+    tmp = m[5];
     m[5] = m[7];
-    m[7] = tmp2;
+    m[7] = tmp;
     return this;
   }
   getNormalMatrix(matrix4) {
@@ -27477,30 +27477,30 @@ var Ray = class {
     _edge2.subVectors(c, a);
     _normal$1.crossVectors(_edge1, _edge2);
     let DdN = this.direction.dot(_normal$1);
-    let sign2;
+    let sign;
     if (DdN > 0) {
       if (backfaceCulling)
         return null;
-      sign2 = 1;
+      sign = 1;
     } else if (DdN < 0) {
-      sign2 = -1;
+      sign = -1;
       DdN = -DdN;
     } else {
       return null;
     }
     _diff.subVectors(this.origin, a);
-    const DdQxE2 = sign2 * this.direction.dot(_edge2.crossVectors(_diff, _edge2));
+    const DdQxE2 = sign * this.direction.dot(_edge2.crossVectors(_diff, _edge2));
     if (DdQxE2 < 0) {
       return null;
     }
-    const DdE1xQ = sign2 * this.direction.dot(_edge1.cross(_diff));
+    const DdE1xQ = sign * this.direction.dot(_edge1.cross(_diff));
     if (DdE1xQ < 0) {
       return null;
     }
     if (DdQxE2 + DdE1xQ > DdN) {
       return null;
     }
-    const QdN = -sign2 * _diff.dot(_normal$1);
+    const QdN = -sign * _diff.dot(_normal$1);
     if (QdN < 0) {
       return null;
     }
@@ -27869,25 +27869,25 @@ var Matrix4 = class _Matrix4 {
   }
   transpose() {
     const te = this.elements;
-    let tmp2;
-    tmp2 = te[1];
+    let tmp;
+    tmp = te[1];
     te[1] = te[4];
-    te[4] = tmp2;
-    tmp2 = te[2];
+    te[4] = tmp;
+    tmp = te[2];
     te[2] = te[8];
-    te[8] = tmp2;
-    tmp2 = te[6];
+    te[8] = tmp;
+    tmp = te[6];
     te[6] = te[9];
-    te[9] = tmp2;
-    tmp2 = te[3];
+    te[9] = tmp;
+    tmp = te[3];
     te[3] = te[12];
-    te[12] = tmp2;
-    tmp2 = te[7];
+    te[12] = tmp;
+    tmp = te[7];
     te[7] = te[13];
-    te[13] = tmp2;
-    tmp2 = te[11];
+    te[13] = tmp;
+    tmp = te[11];
     te[11] = te[14];
-    te[14] = tmp2;
+    te[14] = tmp;
     return this;
   }
   setPosition(x, y, z) {
@@ -30745,20 +30745,20 @@ var BufferGeometry = class _BufferGeometry extends EventDispatcher {
         );
       }
     }
-    const tmp2 = new Vector3(), tmp22 = new Vector3();
+    const tmp = new Vector3(), tmp2 = new Vector3();
     const n = new Vector3(), n2 = new Vector3();
     function handleVertex(v) {
       n.fromArray(normals, v * 3);
       n2.copy(n);
       const t = tan1[v];
-      tmp2.copy(t);
-      tmp2.sub(n.multiplyScalar(n.dot(t))).normalize();
-      tmp22.crossVectors(n2, t);
-      const test = tmp22.dot(tan2[v]);
+      tmp.copy(t);
+      tmp.sub(n.multiplyScalar(n.dot(t))).normalize();
+      tmp2.crossVectors(n2, t);
+      const test = tmp2.dot(tan2[v]);
       const w = test < 0 ? -1 : 1;
-      tangents[v * 4] = tmp2.x;
-      tangents[v * 4 + 1] = tmp2.y;
-      tangents[v * 4 + 2] = tmp2.z;
+      tangents[v * 4] = tmp.x;
+      tangents[v * 4 + 1] = tmp.y;
+      tangents[v * 4 + 2] = tmp.z;
       tangents[v * 4 + 3] = w;
     }
     for (let i = 0, il = groups.length; i < il; ++i) {
@@ -31083,7 +31083,7 @@ var Mesh = class extends Object3D {
     }
     return target;
   }
-  raycast(raycaster, intersects2) {
+  raycast(raycaster, intersects) {
     const geometry = this.geometry;
     const material = this.material;
     const matrixWorld = this.matrixWorld;
@@ -31106,9 +31106,9 @@ var Mesh = class extends Object3D {
       if (_ray$3.intersectsBox(geometry.boundingBox) === false)
         return;
     }
-    this._computeIntersections(raycaster, intersects2, _ray$3);
+    this._computeIntersections(raycaster, intersects, _ray$3);
   }
-  _computeIntersections(raycaster, intersects2, rayLocalSpace) {
+  _computeIntersections(raycaster, intersects, rayLocalSpace) {
     let intersection;
     const geometry = this.geometry;
     const material = this.material;
@@ -31134,7 +31134,7 @@ var Mesh = class extends Object3D {
             if (intersection) {
               intersection.faceIndex = Math.floor(j / 3);
               intersection.face.materialIndex = group.materialIndex;
-              intersects2.push(intersection);
+              intersects.push(intersection);
             }
           }
         }
@@ -31148,7 +31148,7 @@ var Mesh = class extends Object3D {
           intersection = checkGeometryIntersection(this, material, raycaster, rayLocalSpace, uv, uv1, normal, a, b, c);
           if (intersection) {
             intersection.faceIndex = Math.floor(i / 3);
-            intersects2.push(intersection);
+            intersects.push(intersection);
           }
         }
       }
@@ -31167,7 +31167,7 @@ var Mesh = class extends Object3D {
             if (intersection) {
               intersection.faceIndex = Math.floor(j / 3);
               intersection.face.materialIndex = group.materialIndex;
-              intersects2.push(intersection);
+              intersects.push(intersection);
             }
           }
         }
@@ -31181,7 +31181,7 @@ var Mesh = class extends Object3D {
           intersection = checkGeometryIntersection(this, material, raycaster, rayLocalSpace, uv, uv1, normal, a, b, c);
           if (intersection) {
             intersection.faceIndex = Math.floor(i / 3);
-            intersects2.push(intersection);
+            intersects.push(intersection);
           }
         }
       }
@@ -31358,9 +31358,9 @@ function cloneUniforms(src) {
 function mergeUniforms(uniforms) {
   const merged = {};
   for (let u = 0; u < uniforms.length; u++) {
-    const tmp2 = cloneUniforms(uniforms[u]);
-    for (const p in tmp2) {
-      merged[p] = tmp2[p];
+    const tmp = cloneUniforms(uniforms[u]);
+    for (const p in tmp) {
+      merged[p] = tmp[p];
     }
   }
   return merged;
@@ -41041,7 +41041,7 @@ var WebGLRenderer = class {
     let _clippingEnabled = false;
     let _localClippingEnabled = false;
     let _transmissionRenderTarget = null;
-    const _projScreenMatrix = new Matrix4();
+    const _projScreenMatrix2 = new Matrix4();
     const _vector22 = new Vector2();
     const _vector3 = new Vector3();
     const _emptyScene = { background: null, fog: null, environment: null, overrideMaterial: null, isScene: true };
@@ -41562,8 +41562,8 @@ var WebGLRenderer = class {
       currentRenderState = renderStates.get(scene, renderStateStack.length);
       currentRenderState.init();
       renderStateStack.push(currentRenderState);
-      _projScreenMatrix.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse);
-      _frustum.setFromProjectionMatrix(_projScreenMatrix);
+      _projScreenMatrix2.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse);
+      _frustum.setFromProjectionMatrix(_projScreenMatrix2);
       _localClippingEnabled = this.localClippingEnabled;
       _clippingEnabled = clipping.init(this.clippingPlanes, _localClippingEnabled);
       currentRenderList = renderLists.get(scene, renderListStack.length);
@@ -41634,7 +41634,7 @@ var WebGLRenderer = class {
         } else if (object.isSprite) {
           if (!object.frustumCulled || _frustum.intersectsSprite(object)) {
             if (sortObjects) {
-              _vector3.setFromMatrixPosition(object.matrixWorld).applyMatrix4(_projScreenMatrix);
+              _vector3.setFromMatrixPosition(object.matrixWorld).applyMatrix4(_projScreenMatrix2);
             }
             const geometry = objects.update(object);
             const material = object.material;
@@ -41656,7 +41656,7 @@ var WebGLRenderer = class {
                   geometry.computeBoundingSphere();
                 _vector3.copy(geometry.boundingSphere.center);
               }
-              _vector3.applyMatrix4(object.matrixWorld).applyMatrix4(_projScreenMatrix);
+              _vector3.applyMatrix4(object.matrixWorld).applyMatrix4(_projScreenMatrix2);
             }
             if (Array.isArray(material)) {
               const groups = geometry.groups;
@@ -42388,1066 +42388,63 @@ var Scene = class extends Object3D {
     return data;
   }
 };
-var Curve = class {
-  constructor() {
-    this.type = "Curve";
-    this.arcLengthDivisions = 200;
-  }
-  // Virtual base class method to overwrite and implement in subclasses
-  //	- t [0 .. 1]
-  getPoint() {
-    console.warn("THREE.Curve: .getPoint() not implemented.");
-    return null;
-  }
-  // Get point at relative position in curve according to arc length
-  // - u [0 .. 1]
-  getPointAt(u, optionalTarget) {
-    const t = this.getUtoTmapping(u);
-    return this.getPoint(t, optionalTarget);
-  }
-  // Get sequence of points using getPoint( t )
-  getPoints(divisions = 5) {
-    const points = [];
-    for (let d = 0; d <= divisions; d++) {
-      points.push(this.getPoint(d / divisions));
-    }
-    return points;
-  }
-  // Get sequence of points using getPointAt( u )
-  getSpacedPoints(divisions = 5) {
-    const points = [];
-    for (let d = 0; d <= divisions; d++) {
-      points.push(this.getPointAt(d / divisions));
-    }
-    return points;
-  }
-  // Get total curve arc length
-  getLength() {
-    const lengths = this.getLengths();
-    return lengths[lengths.length - 1];
-  }
-  // Get list of cumulative segment lengths
-  getLengths(divisions = this.arcLengthDivisions) {
-    if (this.cacheArcLengths && this.cacheArcLengths.length === divisions + 1 && !this.needsUpdate) {
-      return this.cacheArcLengths;
-    }
-    this.needsUpdate = false;
-    const cache = [];
-    let current, last = this.getPoint(0);
-    let sum = 0;
-    cache.push(0);
-    for (let p = 1; p <= divisions; p++) {
-      current = this.getPoint(p / divisions);
-      sum += current.distanceTo(last);
-      cache.push(sum);
-      last = current;
-    }
-    this.cacheArcLengths = cache;
-    return cache;
-  }
-  updateArcLengths() {
-    this.needsUpdate = true;
-    this.getLengths();
-  }
-  // Given u ( 0 .. 1 ), get a t to find p. This gives you points which are equidistant
-  getUtoTmapping(u, distance) {
-    const arcLengths = this.getLengths();
-    let i = 0;
-    const il = arcLengths.length;
-    let targetArcLength;
-    if (distance) {
-      targetArcLength = distance;
-    } else {
-      targetArcLength = u * arcLengths[il - 1];
-    }
-    let low = 0, high = il - 1, comparison;
-    while (low <= high) {
-      i = Math.floor(low + (high - low) / 2);
-      comparison = arcLengths[i] - targetArcLength;
-      if (comparison < 0) {
-        low = i + 1;
-      } else if (comparison > 0) {
-        high = i - 1;
-      } else {
-        high = i;
-        break;
-      }
-    }
-    i = high;
-    if (arcLengths[i] === targetArcLength) {
-      return i / (il - 1);
-    }
-    const lengthBefore = arcLengths[i];
-    const lengthAfter = arcLengths[i + 1];
-    const segmentLength = lengthAfter - lengthBefore;
-    const segmentFraction = (targetArcLength - lengthBefore) / segmentLength;
-    const t = (i + segmentFraction) / (il - 1);
-    return t;
-  }
-  // Returns a unit vector tangent at t
-  // In case any sub curve does not implement its tangent derivation,
-  // 2 points a small delta apart will be used to find its gradient
-  // which seems to give a reasonable approximation
-  getTangent(t, optionalTarget) {
-    const delta = 1e-4;
-    let t1 = t - delta;
-    let t2 = t + delta;
-    if (t1 < 0)
-      t1 = 0;
-    if (t2 > 1)
-      t2 = 1;
-    const pt1 = this.getPoint(t1);
-    const pt2 = this.getPoint(t2);
-    const tangent = optionalTarget || (pt1.isVector2 ? new Vector2() : new Vector3());
-    tangent.copy(pt2).sub(pt1).normalize();
-    return tangent;
-  }
-  getTangentAt(u, optionalTarget) {
-    const t = this.getUtoTmapping(u);
-    return this.getTangent(t, optionalTarget);
-  }
-  computeFrenetFrames(segments, closed) {
-    const normal = new Vector3();
-    const tangents = [];
-    const normals = [];
-    const binormals = [];
-    const vec = new Vector3();
-    const mat = new Matrix4();
-    for (let i = 0; i <= segments; i++) {
-      const u = i / segments;
-      tangents[i] = this.getTangentAt(u, new Vector3());
-    }
-    normals[0] = new Vector3();
-    binormals[0] = new Vector3();
-    let min = Number.MAX_VALUE;
-    const tx = Math.abs(tangents[0].x);
-    const ty = Math.abs(tangents[0].y);
-    const tz = Math.abs(tangents[0].z);
-    if (tx <= min) {
-      min = tx;
-      normal.set(1, 0, 0);
-    }
-    if (ty <= min) {
-      min = ty;
-      normal.set(0, 1, 0);
-    }
-    if (tz <= min) {
-      normal.set(0, 0, 1);
-    }
-    vec.crossVectors(tangents[0], normal).normalize();
-    normals[0].crossVectors(tangents[0], vec);
-    binormals[0].crossVectors(tangents[0], normals[0]);
-    for (let i = 1; i <= segments; i++) {
-      normals[i] = normals[i - 1].clone();
-      binormals[i] = binormals[i - 1].clone();
-      vec.crossVectors(tangents[i - 1], tangents[i]);
-      if (vec.length() > Number.EPSILON) {
-        vec.normalize();
-        const theta = Math.acos(clamp(tangents[i - 1].dot(tangents[i]), -1, 1));
-        normals[i].applyMatrix4(mat.makeRotationAxis(vec, theta));
-      }
-      binormals[i].crossVectors(tangents[i], normals[i]);
-    }
-    if (closed === true) {
-      let theta = Math.acos(clamp(normals[0].dot(normals[segments]), -1, 1));
-      theta /= segments;
-      if (tangents[0].dot(vec.crossVectors(normals[0], normals[segments])) > 0) {
-        theta = -theta;
-      }
-      for (let i = 1; i <= segments; i++) {
-        normals[i].applyMatrix4(mat.makeRotationAxis(tangents[i], theta * i));
-        binormals[i].crossVectors(tangents[i], normals[i]);
-      }
-    }
-    return {
-      tangents,
-      normals,
-      binormals
-    };
-  }
-  clone() {
-    return new this.constructor().copy(this);
-  }
-  copy(source) {
-    this.arcLengthDivisions = source.arcLengthDivisions;
-    return this;
-  }
-  toJSON() {
-    const data = {
-      metadata: {
-        version: 4.6,
-        type: "Curve",
-        generator: "Curve.toJSON"
-      }
-    };
-    data.arcLengthDivisions = this.arcLengthDivisions;
-    data.type = this.type;
-    return data;
-  }
-  fromJSON(json) {
-    this.arcLengthDivisions = json.arcLengthDivisions;
-    return this;
-  }
-};
-var EllipseCurve = class extends Curve {
-  constructor(aX = 0, aY = 0, xRadius = 1, yRadius = 1, aStartAngle = 0, aEndAngle = Math.PI * 2, aClockwise = false, aRotation = 0) {
+var SphereGeometry = class _SphereGeometry extends BufferGeometry {
+  constructor(radius = 1, widthSegments = 32, heightSegments = 16, phiStart = 0, phiLength = Math.PI * 2, thetaStart = 0, thetaLength = Math.PI) {
     super();
-    this.isEllipseCurve = true;
-    this.type = "EllipseCurve";
-    this.aX = aX;
-    this.aY = aY;
-    this.xRadius = xRadius;
-    this.yRadius = yRadius;
-    this.aStartAngle = aStartAngle;
-    this.aEndAngle = aEndAngle;
-    this.aClockwise = aClockwise;
-    this.aRotation = aRotation;
-  }
-  getPoint(t, optionalTarget) {
-    const point = optionalTarget || new Vector2();
-    const twoPi = Math.PI * 2;
-    let deltaAngle = this.aEndAngle - this.aStartAngle;
-    const samePoints = Math.abs(deltaAngle) < Number.EPSILON;
-    while (deltaAngle < 0)
-      deltaAngle += twoPi;
-    while (deltaAngle > twoPi)
-      deltaAngle -= twoPi;
-    if (deltaAngle < Number.EPSILON) {
-      if (samePoints) {
-        deltaAngle = 0;
-      } else {
-        deltaAngle = twoPi;
-      }
-    }
-    if (this.aClockwise === true && !samePoints) {
-      if (deltaAngle === twoPi) {
-        deltaAngle = -twoPi;
-      } else {
-        deltaAngle = deltaAngle - twoPi;
-      }
-    }
-    const angle = this.aStartAngle + t * deltaAngle;
-    let x = this.aX + this.xRadius * Math.cos(angle);
-    let y = this.aY + this.yRadius * Math.sin(angle);
-    if (this.aRotation !== 0) {
-      const cos = Math.cos(this.aRotation);
-      const sin = Math.sin(this.aRotation);
-      const tx = x - this.aX;
-      const ty = y - this.aY;
-      x = tx * cos - ty * sin + this.aX;
-      y = tx * sin + ty * cos + this.aY;
-    }
-    return point.set(x, y);
-  }
-  copy(source) {
-    super.copy(source);
-    this.aX = source.aX;
-    this.aY = source.aY;
-    this.xRadius = source.xRadius;
-    this.yRadius = source.yRadius;
-    this.aStartAngle = source.aStartAngle;
-    this.aEndAngle = source.aEndAngle;
-    this.aClockwise = source.aClockwise;
-    this.aRotation = source.aRotation;
-    return this;
-  }
-  toJSON() {
-    const data = super.toJSON();
-    data.aX = this.aX;
-    data.aY = this.aY;
-    data.xRadius = this.xRadius;
-    data.yRadius = this.yRadius;
-    data.aStartAngle = this.aStartAngle;
-    data.aEndAngle = this.aEndAngle;
-    data.aClockwise = this.aClockwise;
-    data.aRotation = this.aRotation;
-    return data;
-  }
-  fromJSON(json) {
-    super.fromJSON(json);
-    this.aX = json.aX;
-    this.aY = json.aY;
-    this.xRadius = json.xRadius;
-    this.yRadius = json.yRadius;
-    this.aStartAngle = json.aStartAngle;
-    this.aEndAngle = json.aEndAngle;
-    this.aClockwise = json.aClockwise;
-    this.aRotation = json.aRotation;
-    return this;
-  }
-};
-var ArcCurve = class extends EllipseCurve {
-  constructor(aX, aY, aRadius, aStartAngle, aEndAngle, aClockwise) {
-    super(aX, aY, aRadius, aRadius, aStartAngle, aEndAngle, aClockwise);
-    this.isArcCurve = true;
-    this.type = "ArcCurve";
-  }
-};
-function CubicPoly() {
-  let c0 = 0, c1 = 0, c2 = 0, c3 = 0;
-  function init(x0, x1, t0, t1) {
-    c0 = x0;
-    c1 = t0;
-    c2 = -3 * x0 + 3 * x1 - 2 * t0 - t1;
-    c3 = 2 * x0 - 2 * x1 + t0 + t1;
-  }
-  return {
-    initCatmullRom: function(x0, x1, x2, x3, tension) {
-      init(x1, x2, tension * (x2 - x0), tension * (x3 - x1));
-    },
-    initNonuniformCatmullRom: function(x0, x1, x2, x3, dt0, dt1, dt2) {
-      let t1 = (x1 - x0) / dt0 - (x2 - x0) / (dt0 + dt1) + (x2 - x1) / dt1;
-      let t2 = (x2 - x1) / dt1 - (x3 - x1) / (dt1 + dt2) + (x3 - x2) / dt2;
-      t1 *= dt1;
-      t2 *= dt1;
-      init(x1, x2, t1, t2);
-    },
-    calc: function(t) {
-      const t2 = t * t;
-      const t3 = t2 * t;
-      return c0 + c1 * t + c2 * t2 + c3 * t3;
-    }
-  };
-}
-var tmp = /* @__PURE__ */ new Vector3();
-var px = /* @__PURE__ */ new CubicPoly();
-var py = /* @__PURE__ */ new CubicPoly();
-var pz = /* @__PURE__ */ new CubicPoly();
-var CatmullRomCurve3 = class extends Curve {
-  constructor(points = [], closed = false, curveType = "centripetal", tension = 0.5) {
-    super();
-    this.isCatmullRomCurve3 = true;
-    this.type = "CatmullRomCurve3";
-    this.points = points;
-    this.closed = closed;
-    this.curveType = curveType;
-    this.tension = tension;
-  }
-  getPoint(t, optionalTarget = new Vector3()) {
-    const point = optionalTarget;
-    const points = this.points;
-    const l = points.length;
-    const p = (l - (this.closed ? 0 : 1)) * t;
-    let intPoint = Math.floor(p);
-    let weight = p - intPoint;
-    if (this.closed) {
-      intPoint += intPoint > 0 ? 0 : (Math.floor(Math.abs(intPoint) / l) + 1) * l;
-    } else if (weight === 0 && intPoint === l - 1) {
-      intPoint = l - 2;
-      weight = 1;
-    }
-    let p0, p3;
-    if (this.closed || intPoint > 0) {
-      p0 = points[(intPoint - 1) % l];
-    } else {
-      tmp.subVectors(points[0], points[1]).add(points[0]);
-      p0 = tmp;
-    }
-    const p1 = points[intPoint % l];
-    const p2 = points[(intPoint + 1) % l];
-    if (this.closed || intPoint + 2 < l) {
-      p3 = points[(intPoint + 2) % l];
-    } else {
-      tmp.subVectors(points[l - 1], points[l - 2]).add(points[l - 1]);
-      p3 = tmp;
-    }
-    if (this.curveType === "centripetal" || this.curveType === "chordal") {
-      const pow = this.curveType === "chordal" ? 0.5 : 0.25;
-      let dt0 = Math.pow(p0.distanceToSquared(p1), pow);
-      let dt1 = Math.pow(p1.distanceToSquared(p2), pow);
-      let dt2 = Math.pow(p2.distanceToSquared(p3), pow);
-      if (dt1 < 1e-4)
-        dt1 = 1;
-      if (dt0 < 1e-4)
-        dt0 = dt1;
-      if (dt2 < 1e-4)
-        dt2 = dt1;
-      px.initNonuniformCatmullRom(p0.x, p1.x, p2.x, p3.x, dt0, dt1, dt2);
-      py.initNonuniformCatmullRom(p0.y, p1.y, p2.y, p3.y, dt0, dt1, dt2);
-      pz.initNonuniformCatmullRom(p0.z, p1.z, p2.z, p3.z, dt0, dt1, dt2);
-    } else if (this.curveType === "catmullrom") {
-      px.initCatmullRom(p0.x, p1.x, p2.x, p3.x, this.tension);
-      py.initCatmullRom(p0.y, p1.y, p2.y, p3.y, this.tension);
-      pz.initCatmullRom(p0.z, p1.z, p2.z, p3.z, this.tension);
-    }
-    point.set(
-      px.calc(weight),
-      py.calc(weight),
-      pz.calc(weight)
-    );
-    return point;
-  }
-  copy(source) {
-    super.copy(source);
-    this.points = [];
-    for (let i = 0, l = source.points.length; i < l; i++) {
-      const point = source.points[i];
-      this.points.push(point.clone());
-    }
-    this.closed = source.closed;
-    this.curveType = source.curveType;
-    this.tension = source.tension;
-    return this;
-  }
-  toJSON() {
-    const data = super.toJSON();
-    data.points = [];
-    for (let i = 0, l = this.points.length; i < l; i++) {
-      const point = this.points[i];
-      data.points.push(point.toArray());
-    }
-    data.closed = this.closed;
-    data.curveType = this.curveType;
-    data.tension = this.tension;
-    return data;
-  }
-  fromJSON(json) {
-    super.fromJSON(json);
-    this.points = [];
-    for (let i = 0, l = json.points.length; i < l; i++) {
-      const point = json.points[i];
-      this.points.push(new Vector3().fromArray(point));
-    }
-    this.closed = json.closed;
-    this.curveType = json.curveType;
-    this.tension = json.tension;
-    return this;
-  }
-};
-function CatmullRom(t, p0, p1, p2, p3) {
-  const v0 = (p2 - p0) * 0.5;
-  const v1 = (p3 - p1) * 0.5;
-  const t2 = t * t;
-  const t3 = t * t2;
-  return (2 * p1 - 2 * p2 + v0 + v1) * t3 + (-3 * p1 + 3 * p2 - 2 * v0 - v1) * t2 + v0 * t + p1;
-}
-function QuadraticBezierP0(t, p) {
-  const k = 1 - t;
-  return k * k * p;
-}
-function QuadraticBezierP1(t, p) {
-  return 2 * (1 - t) * t * p;
-}
-function QuadraticBezierP2(t, p) {
-  return t * t * p;
-}
-function QuadraticBezier(t, p0, p1, p2) {
-  return QuadraticBezierP0(t, p0) + QuadraticBezierP1(t, p1) + QuadraticBezierP2(t, p2);
-}
-function CubicBezierP0(t, p) {
-  const k = 1 - t;
-  return k * k * k * p;
-}
-function CubicBezierP1(t, p) {
-  const k = 1 - t;
-  return 3 * k * k * t * p;
-}
-function CubicBezierP2(t, p) {
-  return 3 * (1 - t) * t * t * p;
-}
-function CubicBezierP3(t, p) {
-  return t * t * t * p;
-}
-function CubicBezier(t, p0, p1, p2, p3) {
-  return CubicBezierP0(t, p0) + CubicBezierP1(t, p1) + CubicBezierP2(t, p2) + CubicBezierP3(t, p3);
-}
-var CubicBezierCurve = class extends Curve {
-  constructor(v0 = new Vector2(), v1 = new Vector2(), v2 = new Vector2(), v3 = new Vector2()) {
-    super();
-    this.isCubicBezierCurve = true;
-    this.type = "CubicBezierCurve";
-    this.v0 = v0;
-    this.v1 = v1;
-    this.v2 = v2;
-    this.v3 = v3;
-  }
-  getPoint(t, optionalTarget = new Vector2()) {
-    const point = optionalTarget;
-    const v0 = this.v0, v1 = this.v1, v2 = this.v2, v3 = this.v3;
-    point.set(
-      CubicBezier(t, v0.x, v1.x, v2.x, v3.x),
-      CubicBezier(t, v0.y, v1.y, v2.y, v3.y)
-    );
-    return point;
-  }
-  copy(source) {
-    super.copy(source);
-    this.v0.copy(source.v0);
-    this.v1.copy(source.v1);
-    this.v2.copy(source.v2);
-    this.v3.copy(source.v3);
-    return this;
-  }
-  toJSON() {
-    const data = super.toJSON();
-    data.v0 = this.v0.toArray();
-    data.v1 = this.v1.toArray();
-    data.v2 = this.v2.toArray();
-    data.v3 = this.v3.toArray();
-    return data;
-  }
-  fromJSON(json) {
-    super.fromJSON(json);
-    this.v0.fromArray(json.v0);
-    this.v1.fromArray(json.v1);
-    this.v2.fromArray(json.v2);
-    this.v3.fromArray(json.v3);
-    return this;
-  }
-};
-var CubicBezierCurve3 = class extends Curve {
-  constructor(v0 = new Vector3(), v1 = new Vector3(), v2 = new Vector3(), v3 = new Vector3()) {
-    super();
-    this.isCubicBezierCurve3 = true;
-    this.type = "CubicBezierCurve3";
-    this.v0 = v0;
-    this.v1 = v1;
-    this.v2 = v2;
-    this.v3 = v3;
-  }
-  getPoint(t, optionalTarget = new Vector3()) {
-    const point = optionalTarget;
-    const v0 = this.v0, v1 = this.v1, v2 = this.v2, v3 = this.v3;
-    point.set(
-      CubicBezier(t, v0.x, v1.x, v2.x, v3.x),
-      CubicBezier(t, v0.y, v1.y, v2.y, v3.y),
-      CubicBezier(t, v0.z, v1.z, v2.z, v3.z)
-    );
-    return point;
-  }
-  copy(source) {
-    super.copy(source);
-    this.v0.copy(source.v0);
-    this.v1.copy(source.v1);
-    this.v2.copy(source.v2);
-    this.v3.copy(source.v3);
-    return this;
-  }
-  toJSON() {
-    const data = super.toJSON();
-    data.v0 = this.v0.toArray();
-    data.v1 = this.v1.toArray();
-    data.v2 = this.v2.toArray();
-    data.v3 = this.v3.toArray();
-    return data;
-  }
-  fromJSON(json) {
-    super.fromJSON(json);
-    this.v0.fromArray(json.v0);
-    this.v1.fromArray(json.v1);
-    this.v2.fromArray(json.v2);
-    this.v3.fromArray(json.v3);
-    return this;
-  }
-};
-var LineCurve = class extends Curve {
-  constructor(v1 = new Vector2(), v2 = new Vector2()) {
-    super();
-    this.isLineCurve = true;
-    this.type = "LineCurve";
-    this.v1 = v1;
-    this.v2 = v2;
-  }
-  getPoint(t, optionalTarget = new Vector2()) {
-    const point = optionalTarget;
-    if (t === 1) {
-      point.copy(this.v2);
-    } else {
-      point.copy(this.v2).sub(this.v1);
-      point.multiplyScalar(t).add(this.v1);
-    }
-    return point;
-  }
-  // Line curve is linear, so we can overwrite default getPointAt
-  getPointAt(u, optionalTarget) {
-    return this.getPoint(u, optionalTarget);
-  }
-  getTangent(t, optionalTarget = new Vector2()) {
-    return optionalTarget.subVectors(this.v2, this.v1).normalize();
-  }
-  getTangentAt(u, optionalTarget) {
-    return this.getTangent(u, optionalTarget);
-  }
-  copy(source) {
-    super.copy(source);
-    this.v1.copy(source.v1);
-    this.v2.copy(source.v2);
-    return this;
-  }
-  toJSON() {
-    const data = super.toJSON();
-    data.v1 = this.v1.toArray();
-    data.v2 = this.v2.toArray();
-    return data;
-  }
-  fromJSON(json) {
-    super.fromJSON(json);
-    this.v1.fromArray(json.v1);
-    this.v2.fromArray(json.v2);
-    return this;
-  }
-};
-var LineCurve3 = class extends Curve {
-  constructor(v1 = new Vector3(), v2 = new Vector3()) {
-    super();
-    this.isLineCurve3 = true;
-    this.type = "LineCurve3";
-    this.v1 = v1;
-    this.v2 = v2;
-  }
-  getPoint(t, optionalTarget = new Vector3()) {
-    const point = optionalTarget;
-    if (t === 1) {
-      point.copy(this.v2);
-    } else {
-      point.copy(this.v2).sub(this.v1);
-      point.multiplyScalar(t).add(this.v1);
-    }
-    return point;
-  }
-  // Line curve is linear, so we can overwrite default getPointAt
-  getPointAt(u, optionalTarget) {
-    return this.getPoint(u, optionalTarget);
-  }
-  getTangent(t, optionalTarget = new Vector3()) {
-    return optionalTarget.subVectors(this.v2, this.v1).normalize();
-  }
-  getTangentAt(u, optionalTarget) {
-    return this.getTangent(u, optionalTarget);
-  }
-  copy(source) {
-    super.copy(source);
-    this.v1.copy(source.v1);
-    this.v2.copy(source.v2);
-    return this;
-  }
-  toJSON() {
-    const data = super.toJSON();
-    data.v1 = this.v1.toArray();
-    data.v2 = this.v2.toArray();
-    return data;
-  }
-  fromJSON(json) {
-    super.fromJSON(json);
-    this.v1.fromArray(json.v1);
-    this.v2.fromArray(json.v2);
-    return this;
-  }
-};
-var QuadraticBezierCurve = class extends Curve {
-  constructor(v0 = new Vector2(), v1 = new Vector2(), v2 = new Vector2()) {
-    super();
-    this.isQuadraticBezierCurve = true;
-    this.type = "QuadraticBezierCurve";
-    this.v0 = v0;
-    this.v1 = v1;
-    this.v2 = v2;
-  }
-  getPoint(t, optionalTarget = new Vector2()) {
-    const point = optionalTarget;
-    const v0 = this.v0, v1 = this.v1, v2 = this.v2;
-    point.set(
-      QuadraticBezier(t, v0.x, v1.x, v2.x),
-      QuadraticBezier(t, v0.y, v1.y, v2.y)
-    );
-    return point;
-  }
-  copy(source) {
-    super.copy(source);
-    this.v0.copy(source.v0);
-    this.v1.copy(source.v1);
-    this.v2.copy(source.v2);
-    return this;
-  }
-  toJSON() {
-    const data = super.toJSON();
-    data.v0 = this.v0.toArray();
-    data.v1 = this.v1.toArray();
-    data.v2 = this.v2.toArray();
-    return data;
-  }
-  fromJSON(json) {
-    super.fromJSON(json);
-    this.v0.fromArray(json.v0);
-    this.v1.fromArray(json.v1);
-    this.v2.fromArray(json.v2);
-    return this;
-  }
-};
-var QuadraticBezierCurve3 = class extends Curve {
-  constructor(v0 = new Vector3(), v1 = new Vector3(), v2 = new Vector3()) {
-    super();
-    this.isQuadraticBezierCurve3 = true;
-    this.type = "QuadraticBezierCurve3";
-    this.v0 = v0;
-    this.v1 = v1;
-    this.v2 = v2;
-  }
-  getPoint(t, optionalTarget = new Vector3()) {
-    const point = optionalTarget;
-    const v0 = this.v0, v1 = this.v1, v2 = this.v2;
-    point.set(
-      QuadraticBezier(t, v0.x, v1.x, v2.x),
-      QuadraticBezier(t, v0.y, v1.y, v2.y),
-      QuadraticBezier(t, v0.z, v1.z, v2.z)
-    );
-    return point;
-  }
-  copy(source) {
-    super.copy(source);
-    this.v0.copy(source.v0);
-    this.v1.copy(source.v1);
-    this.v2.copy(source.v2);
-    return this;
-  }
-  toJSON() {
-    const data = super.toJSON();
-    data.v0 = this.v0.toArray();
-    data.v1 = this.v1.toArray();
-    data.v2 = this.v2.toArray();
-    return data;
-  }
-  fromJSON(json) {
-    super.fromJSON(json);
-    this.v0.fromArray(json.v0);
-    this.v1.fromArray(json.v1);
-    this.v2.fromArray(json.v2);
-    return this;
-  }
-};
-var SplineCurve = class extends Curve {
-  constructor(points = []) {
-    super();
-    this.isSplineCurve = true;
-    this.type = "SplineCurve";
-    this.points = points;
-  }
-  getPoint(t, optionalTarget = new Vector2()) {
-    const point = optionalTarget;
-    const points = this.points;
-    const p = (points.length - 1) * t;
-    const intPoint = Math.floor(p);
-    const weight = p - intPoint;
-    const p0 = points[intPoint === 0 ? intPoint : intPoint - 1];
-    const p1 = points[intPoint];
-    const p2 = points[intPoint > points.length - 2 ? points.length - 1 : intPoint + 1];
-    const p3 = points[intPoint > points.length - 3 ? points.length - 1 : intPoint + 2];
-    point.set(
-      CatmullRom(weight, p0.x, p1.x, p2.x, p3.x),
-      CatmullRom(weight, p0.y, p1.y, p2.y, p3.y)
-    );
-    return point;
-  }
-  copy(source) {
-    super.copy(source);
-    this.points = [];
-    for (let i = 0, l = source.points.length; i < l; i++) {
-      const point = source.points[i];
-      this.points.push(point.clone());
-    }
-    return this;
-  }
-  toJSON() {
-    const data = super.toJSON();
-    data.points = [];
-    for (let i = 0, l = this.points.length; i < l; i++) {
-      const point = this.points[i];
-      data.points.push(point.toArray());
-    }
-    return data;
-  }
-  fromJSON(json) {
-    super.fromJSON(json);
-    this.points = [];
-    for (let i = 0, l = json.points.length; i < l; i++) {
-      const point = json.points[i];
-      this.points.push(new Vector2().fromArray(point));
-    }
-    return this;
-  }
-};
-var Curves = /* @__PURE__ */ Object.freeze({
-  __proto__: null,
-  ArcCurve,
-  CatmullRomCurve3,
-  CubicBezierCurve,
-  CubicBezierCurve3,
-  EllipseCurve,
-  LineCurve,
-  LineCurve3,
-  QuadraticBezierCurve,
-  QuadraticBezierCurve3,
-  SplineCurve
-});
-var CurvePath = class extends Curve {
-  constructor() {
-    super();
-    this.type = "CurvePath";
-    this.curves = [];
-    this.autoClose = false;
-  }
-  add(curve) {
-    this.curves.push(curve);
-  }
-  closePath() {
-    const startPoint = this.curves[0].getPoint(0);
-    const endPoint = this.curves[this.curves.length - 1].getPoint(1);
-    if (!startPoint.equals(endPoint)) {
-      const lineType = startPoint.isVector2 === true ? "LineCurve" : "LineCurve3";
-      this.curves.push(new Curves[lineType](endPoint, startPoint));
-    }
-    return this;
-  }
-  // To get accurate point with reference to
-  // entire path distance at time t,
-  // following has to be done:
-  // 1. Length of each sub path have to be known
-  // 2. Locate and identify type of curve
-  // 3. Get t for the curve
-  // 4. Return curve.getPointAt(t')
-  getPoint(t, optionalTarget) {
-    const d = t * this.getLength();
-    const curveLengths = this.getCurveLengths();
-    let i = 0;
-    while (i < curveLengths.length) {
-      if (curveLengths[i] >= d) {
-        const diff = curveLengths[i] - d;
-        const curve = this.curves[i];
-        const segmentLength = curve.getLength();
-        const u = segmentLength === 0 ? 0 : 1 - diff / segmentLength;
-        return curve.getPointAt(u, optionalTarget);
-      }
-      i++;
-    }
-    return null;
-  }
-  // We cannot use the default THREE.Curve getPoint() with getLength() because in
-  // THREE.Curve, getLength() depends on getPoint() but in THREE.CurvePath
-  // getPoint() depends on getLength
-  getLength() {
-    const lens = this.getCurveLengths();
-    return lens[lens.length - 1];
-  }
-  // cacheLengths must be recalculated.
-  updateArcLengths() {
-    this.needsUpdate = true;
-    this.cacheLengths = null;
-    this.getCurveLengths();
-  }
-  // Compute lengths and cache them
-  // We cannot overwrite getLengths() because UtoT mapping uses it.
-  getCurveLengths() {
-    if (this.cacheLengths && this.cacheLengths.length === this.curves.length) {
-      return this.cacheLengths;
-    }
-    const lengths = [];
-    let sums = 0;
-    for (let i = 0, l = this.curves.length; i < l; i++) {
-      sums += this.curves[i].getLength();
-      lengths.push(sums);
-    }
-    this.cacheLengths = lengths;
-    return lengths;
-  }
-  getSpacedPoints(divisions = 40) {
-    const points = [];
-    for (let i = 0; i <= divisions; i++) {
-      points.push(this.getPoint(i / divisions));
-    }
-    if (this.autoClose) {
-      points.push(points[0]);
-    }
-    return points;
-  }
-  getPoints(divisions = 12) {
-    const points = [];
-    let last;
-    for (let i = 0, curves = this.curves; i < curves.length; i++) {
-      const curve = curves[i];
-      const resolution = curve.isEllipseCurve ? divisions * 2 : curve.isLineCurve || curve.isLineCurve3 ? 1 : curve.isSplineCurve ? divisions * curve.points.length : divisions;
-      const pts = curve.getPoints(resolution);
-      for (let j = 0; j < pts.length; j++) {
-        const point = pts[j];
-        if (last && last.equals(point))
-          continue;
-        points.push(point);
-        last = point;
-      }
-    }
-    if (this.autoClose && points.length > 1 && !points[points.length - 1].equals(points[0])) {
-      points.push(points[0]);
-    }
-    return points;
-  }
-  copy(source) {
-    super.copy(source);
-    this.curves = [];
-    for (let i = 0, l = source.curves.length; i < l; i++) {
-      const curve = source.curves[i];
-      this.curves.push(curve.clone());
-    }
-    this.autoClose = source.autoClose;
-    return this;
-  }
-  toJSON() {
-    const data = super.toJSON();
-    data.autoClose = this.autoClose;
-    data.curves = [];
-    for (let i = 0, l = this.curves.length; i < l; i++) {
-      const curve = this.curves[i];
-      data.curves.push(curve.toJSON());
-    }
-    return data;
-  }
-  fromJSON(json) {
-    super.fromJSON(json);
-    this.autoClose = json.autoClose;
-    this.curves = [];
-    for (let i = 0, l = json.curves.length; i < l; i++) {
-      const curve = json.curves[i];
-      this.curves.push(new Curves[curve.type]().fromJSON(curve));
-    }
-    return this;
-  }
-};
-var Path = class extends CurvePath {
-  constructor(points) {
-    super();
-    this.type = "Path";
-    this.currentPoint = new Vector2();
-    if (points) {
-      this.setFromPoints(points);
-    }
-  }
-  setFromPoints(points) {
-    this.moveTo(points[0].x, points[0].y);
-    for (let i = 1, l = points.length; i < l; i++) {
-      this.lineTo(points[i].x, points[i].y);
-    }
-    return this;
-  }
-  moveTo(x, y) {
-    this.currentPoint.set(x, y);
-    return this;
-  }
-  lineTo(x, y) {
-    const curve = new LineCurve(this.currentPoint.clone(), new Vector2(x, y));
-    this.curves.push(curve);
-    this.currentPoint.set(x, y);
-    return this;
-  }
-  quadraticCurveTo(aCPx, aCPy, aX, aY) {
-    const curve = new QuadraticBezierCurve(
-      this.currentPoint.clone(),
-      new Vector2(aCPx, aCPy),
-      new Vector2(aX, aY)
-    );
-    this.curves.push(curve);
-    this.currentPoint.set(aX, aY);
-    return this;
-  }
-  bezierCurveTo(aCP1x, aCP1y, aCP2x, aCP2y, aX, aY) {
-    const curve = new CubicBezierCurve(
-      this.currentPoint.clone(),
-      new Vector2(aCP1x, aCP1y),
-      new Vector2(aCP2x, aCP2y),
-      new Vector2(aX, aY)
-    );
-    this.curves.push(curve);
-    this.currentPoint.set(aX, aY);
-    return this;
-  }
-  splineThru(pts) {
-    const npts = [this.currentPoint.clone()].concat(pts);
-    const curve = new SplineCurve(npts);
-    this.curves.push(curve);
-    this.currentPoint.copy(pts[pts.length - 1]);
-    return this;
-  }
-  arc(aX, aY, aRadius, aStartAngle, aEndAngle, aClockwise) {
-    const x0 = this.currentPoint.x;
-    const y0 = this.currentPoint.y;
-    this.absarc(
-      aX + x0,
-      aY + y0,
-      aRadius,
-      aStartAngle,
-      aEndAngle,
-      aClockwise
-    );
-    return this;
-  }
-  absarc(aX, aY, aRadius, aStartAngle, aEndAngle, aClockwise) {
-    this.absellipse(aX, aY, aRadius, aRadius, aStartAngle, aEndAngle, aClockwise);
-    return this;
-  }
-  ellipse(aX, aY, xRadius, yRadius, aStartAngle, aEndAngle, aClockwise, aRotation) {
-    const x0 = this.currentPoint.x;
-    const y0 = this.currentPoint.y;
-    this.absellipse(aX + x0, aY + y0, xRadius, yRadius, aStartAngle, aEndAngle, aClockwise, aRotation);
-    return this;
-  }
-  absellipse(aX, aY, xRadius, yRadius, aStartAngle, aEndAngle, aClockwise, aRotation) {
-    const curve = new EllipseCurve(aX, aY, xRadius, yRadius, aStartAngle, aEndAngle, aClockwise, aRotation);
-    if (this.curves.length > 0) {
-      const firstPoint = curve.getPoint(0);
-      if (!firstPoint.equals(this.currentPoint)) {
-        this.lineTo(firstPoint.x, firstPoint.y);
-      }
-    }
-    this.curves.push(curve);
-    const lastPoint = curve.getPoint(1);
-    this.currentPoint.copy(lastPoint);
-    return this;
-  }
-  copy(source) {
-    super.copy(source);
-    this.currentPoint.copy(source.currentPoint);
-    return this;
-  }
-  toJSON() {
-    const data = super.toJSON();
-    data.currentPoint = this.currentPoint.toArray();
-    return data;
-  }
-  fromJSON(json) {
-    super.fromJSON(json);
-    this.currentPoint.fromArray(json.currentPoint);
-    return this;
-  }
-};
-var CircleGeometry = class _CircleGeometry extends BufferGeometry {
-  constructor(radius = 1, segments = 32, thetaStart = 0, thetaLength = Math.PI * 2) {
-    super();
-    this.type = "CircleGeometry";
+    this.type = "SphereGeometry";
     this.parameters = {
       radius,
-      segments,
+      widthSegments,
+      heightSegments,
+      phiStart,
+      phiLength,
       thetaStart,
       thetaLength
     };
-    segments = Math.max(3, segments);
+    widthSegments = Math.max(3, Math.floor(widthSegments));
+    heightSegments = Math.max(2, Math.floor(heightSegments));
+    const thetaEnd = Math.min(thetaStart + thetaLength, Math.PI);
+    let index = 0;
+    const grid = [];
+    const vertex2 = new Vector3();
+    const normal = new Vector3();
     const indices = [];
     const vertices = [];
     const normals = [];
     const uvs = [];
-    const vertex2 = new Vector3();
-    const uv = new Vector2();
-    vertices.push(0, 0, 0);
-    normals.push(0, 0, 1);
-    uvs.push(0.5, 0.5);
-    for (let s = 0, i = 3; s <= segments; s++, i += 3) {
-      const segment = thetaStart + s / segments * thetaLength;
-      vertex2.x = radius * Math.cos(segment);
-      vertex2.y = radius * Math.sin(segment);
-      vertices.push(vertex2.x, vertex2.y, vertex2.z);
-      normals.push(0, 0, 1);
-      uv.x = (vertices[i] / radius + 1) / 2;
-      uv.y = (vertices[i + 1] / radius + 1) / 2;
-      uvs.push(uv.x, uv.y);
+    for (let iy = 0; iy <= heightSegments; iy++) {
+      const verticesRow = [];
+      const v = iy / heightSegments;
+      let uOffset = 0;
+      if (iy === 0 && thetaStart === 0) {
+        uOffset = 0.5 / widthSegments;
+      } else if (iy === heightSegments && thetaEnd === Math.PI) {
+        uOffset = -0.5 / widthSegments;
+      }
+      for (let ix = 0; ix <= widthSegments; ix++) {
+        const u = ix / widthSegments;
+        vertex2.x = -radius * Math.cos(phiStart + u * phiLength) * Math.sin(thetaStart + v * thetaLength);
+        vertex2.y = radius * Math.cos(thetaStart + v * thetaLength);
+        vertex2.z = radius * Math.sin(phiStart + u * phiLength) * Math.sin(thetaStart + v * thetaLength);
+        vertices.push(vertex2.x, vertex2.y, vertex2.z);
+        normal.copy(vertex2).normalize();
+        normals.push(normal.x, normal.y, normal.z);
+        uvs.push(u + uOffset, 1 - v);
+        verticesRow.push(index++);
+      }
+      grid.push(verticesRow);
     }
-    for (let i = 1; i <= segments; i++) {
-      indices.push(i, i + 1, 0);
+    for (let iy = 0; iy < heightSegments; iy++) {
+      for (let ix = 0; ix < widthSegments; ix++) {
+        const a = grid[iy][ix + 1];
+        const b = grid[iy][ix];
+        const c = grid[iy + 1][ix];
+        const d = grid[iy + 1][ix + 1];
+        if (iy !== 0 || thetaStart > 0)
+          indices.push(a, b, d);
+        if (iy !== heightSegments - 1 || thetaEnd < Math.PI)
+          indices.push(b, c, d);
+      }
     }
     this.setIndex(indices);
     this.setAttribute("position", new Float32BufferAttribute(vertices, 3));
@@ -43460,628 +42457,9 @@ var CircleGeometry = class _CircleGeometry extends BufferGeometry {
     return this;
   }
   static fromJSON(data) {
-    return new _CircleGeometry(data.radius, data.segments, data.thetaStart, data.thetaLength);
+    return new _SphereGeometry(data.radius, data.widthSegments, data.heightSegments, data.phiStart, data.phiLength, data.thetaStart, data.thetaLength);
   }
 };
-var Shape = class extends Path {
-  constructor(points) {
-    super(points);
-    this.uuid = generateUUID();
-    this.type = "Shape";
-    this.holes = [];
-  }
-  getPointsHoles(divisions) {
-    const holesPts = [];
-    for (let i = 0, l = this.holes.length; i < l; i++) {
-      holesPts[i] = this.holes[i].getPoints(divisions);
-    }
-    return holesPts;
-  }
-  // get points of shape and holes (keypoints based on segments parameter)
-  extractPoints(divisions) {
-    return {
-      shape: this.getPoints(divisions),
-      holes: this.getPointsHoles(divisions)
-    };
-  }
-  copy(source) {
-    super.copy(source);
-    this.holes = [];
-    for (let i = 0, l = source.holes.length; i < l; i++) {
-      const hole = source.holes[i];
-      this.holes.push(hole.clone());
-    }
-    return this;
-  }
-  toJSON() {
-    const data = super.toJSON();
-    data.uuid = this.uuid;
-    data.holes = [];
-    for (let i = 0, l = this.holes.length; i < l; i++) {
-      const hole = this.holes[i];
-      data.holes.push(hole.toJSON());
-    }
-    return data;
-  }
-  fromJSON(json) {
-    super.fromJSON(json);
-    this.uuid = json.uuid;
-    this.holes = [];
-    for (let i = 0, l = json.holes.length; i < l; i++) {
-      const hole = json.holes[i];
-      this.holes.push(new Path().fromJSON(hole));
-    }
-    return this;
-  }
-};
-var Earcut = {
-  triangulate: function(data, holeIndices, dim = 2) {
-    const hasHoles = holeIndices && holeIndices.length;
-    const outerLen = hasHoles ? holeIndices[0] * dim : data.length;
-    let outerNode = linkedList(data, 0, outerLen, dim, true);
-    const triangles = [];
-    if (!outerNode || outerNode.next === outerNode.prev)
-      return triangles;
-    let minX, minY, maxX, maxY, x, y, invSize;
-    if (hasHoles)
-      outerNode = eliminateHoles(data, holeIndices, outerNode, dim);
-    if (data.length > 80 * dim) {
-      minX = maxX = data[0];
-      minY = maxY = data[1];
-      for (let i = dim; i < outerLen; i += dim) {
-        x = data[i];
-        y = data[i + 1];
-        if (x < minX)
-          minX = x;
-        if (y < minY)
-          minY = y;
-        if (x > maxX)
-          maxX = x;
-        if (y > maxY)
-          maxY = y;
-      }
-      invSize = Math.max(maxX - minX, maxY - minY);
-      invSize = invSize !== 0 ? 32767 / invSize : 0;
-    }
-    earcutLinked(outerNode, triangles, dim, minX, minY, invSize, 0);
-    return triangles;
-  }
-};
-function linkedList(data, start, end, dim, clockwise) {
-  let i, last;
-  if (clockwise === signedArea(data, start, end, dim) > 0) {
-    for (i = start; i < end; i += dim)
-      last = insertNode(i, data[i], data[i + 1], last);
-  } else {
-    for (i = end - dim; i >= start; i -= dim)
-      last = insertNode(i, data[i], data[i + 1], last);
-  }
-  if (last && equals(last, last.next)) {
-    removeNode(last);
-    last = last.next;
-  }
-  return last;
-}
-function filterPoints(start, end) {
-  if (!start)
-    return start;
-  if (!end)
-    end = start;
-  let p = start, again;
-  do {
-    again = false;
-    if (!p.steiner && (equals(p, p.next) || area(p.prev, p, p.next) === 0)) {
-      removeNode(p);
-      p = end = p.prev;
-      if (p === p.next)
-        break;
-      again = true;
-    } else {
-      p = p.next;
-    }
-  } while (again || p !== end);
-  return end;
-}
-function earcutLinked(ear, triangles, dim, minX, minY, invSize, pass) {
-  if (!ear)
-    return;
-  if (!pass && invSize)
-    indexCurve(ear, minX, minY, invSize);
-  let stop = ear, prev, next;
-  while (ear.prev !== ear.next) {
-    prev = ear.prev;
-    next = ear.next;
-    if (invSize ? isEarHashed(ear, minX, minY, invSize) : isEar(ear)) {
-      triangles.push(prev.i / dim | 0);
-      triangles.push(ear.i / dim | 0);
-      triangles.push(next.i / dim | 0);
-      removeNode(ear);
-      ear = next.next;
-      stop = next.next;
-      continue;
-    }
-    ear = next;
-    if (ear === stop) {
-      if (!pass) {
-        earcutLinked(filterPoints(ear), triangles, dim, minX, minY, invSize, 1);
-      } else if (pass === 1) {
-        ear = cureLocalIntersections(filterPoints(ear), triangles, dim);
-        earcutLinked(ear, triangles, dim, minX, minY, invSize, 2);
-      } else if (pass === 2) {
-        splitEarcut(ear, triangles, dim, minX, minY, invSize);
-      }
-      break;
-    }
-  }
-}
-function isEar(ear) {
-  const a = ear.prev, b = ear, c = ear.next;
-  if (area(a, b, c) >= 0)
-    return false;
-  const ax = a.x, bx = b.x, cx = c.x, ay = a.y, by = b.y, cy = c.y;
-  const x0 = ax < bx ? ax < cx ? ax : cx : bx < cx ? bx : cx, y0 = ay < by ? ay < cy ? ay : cy : by < cy ? by : cy, x1 = ax > bx ? ax > cx ? ax : cx : bx > cx ? bx : cx, y1 = ay > by ? ay > cy ? ay : cy : by > cy ? by : cy;
-  let p = c.next;
-  while (p !== a) {
-    if (p.x >= x0 && p.x <= x1 && p.y >= y0 && p.y <= y1 && pointInTriangle(ax, ay, bx, by, cx, cy, p.x, p.y) && area(p.prev, p, p.next) >= 0)
-      return false;
-    p = p.next;
-  }
-  return true;
-}
-function isEarHashed(ear, minX, minY, invSize) {
-  const a = ear.prev, b = ear, c = ear.next;
-  if (area(a, b, c) >= 0)
-    return false;
-  const ax = a.x, bx = b.x, cx = c.x, ay = a.y, by = b.y, cy = c.y;
-  const x0 = ax < bx ? ax < cx ? ax : cx : bx < cx ? bx : cx, y0 = ay < by ? ay < cy ? ay : cy : by < cy ? by : cy, x1 = ax > bx ? ax > cx ? ax : cx : bx > cx ? bx : cx, y1 = ay > by ? ay > cy ? ay : cy : by > cy ? by : cy;
-  const minZ = zOrder(x0, y0, minX, minY, invSize), maxZ = zOrder(x1, y1, minX, minY, invSize);
-  let p = ear.prevZ, n = ear.nextZ;
-  while (p && p.z >= minZ && n && n.z <= maxZ) {
-    if (p.x >= x0 && p.x <= x1 && p.y >= y0 && p.y <= y1 && p !== a && p !== c && pointInTriangle(ax, ay, bx, by, cx, cy, p.x, p.y) && area(p.prev, p, p.next) >= 0)
-      return false;
-    p = p.prevZ;
-    if (n.x >= x0 && n.x <= x1 && n.y >= y0 && n.y <= y1 && n !== a && n !== c && pointInTriangle(ax, ay, bx, by, cx, cy, n.x, n.y) && area(n.prev, n, n.next) >= 0)
-      return false;
-    n = n.nextZ;
-  }
-  while (p && p.z >= minZ) {
-    if (p.x >= x0 && p.x <= x1 && p.y >= y0 && p.y <= y1 && p !== a && p !== c && pointInTriangle(ax, ay, bx, by, cx, cy, p.x, p.y) && area(p.prev, p, p.next) >= 0)
-      return false;
-    p = p.prevZ;
-  }
-  while (n && n.z <= maxZ) {
-    if (n.x >= x0 && n.x <= x1 && n.y >= y0 && n.y <= y1 && n !== a && n !== c && pointInTriangle(ax, ay, bx, by, cx, cy, n.x, n.y) && area(n.prev, n, n.next) >= 0)
-      return false;
-    n = n.nextZ;
-  }
-  return true;
-}
-function cureLocalIntersections(start, triangles, dim) {
-  let p = start;
-  do {
-    const a = p.prev, b = p.next.next;
-    if (!equals(a, b) && intersects(a, p, p.next, b) && locallyInside(a, b) && locallyInside(b, a)) {
-      triangles.push(a.i / dim | 0);
-      triangles.push(p.i / dim | 0);
-      triangles.push(b.i / dim | 0);
-      removeNode(p);
-      removeNode(p.next);
-      p = start = b;
-    }
-    p = p.next;
-  } while (p !== start);
-  return filterPoints(p);
-}
-function splitEarcut(start, triangles, dim, minX, minY, invSize) {
-  let a = start;
-  do {
-    let b = a.next.next;
-    while (b !== a.prev) {
-      if (a.i !== b.i && isValidDiagonal(a, b)) {
-        let c = splitPolygon(a, b);
-        a = filterPoints(a, a.next);
-        c = filterPoints(c, c.next);
-        earcutLinked(a, triangles, dim, minX, minY, invSize, 0);
-        earcutLinked(c, triangles, dim, minX, minY, invSize, 0);
-        return;
-      }
-      b = b.next;
-    }
-    a = a.next;
-  } while (a !== start);
-}
-function eliminateHoles(data, holeIndices, outerNode, dim) {
-  const queue = [];
-  let i, len, start, end, list;
-  for (i = 0, len = holeIndices.length; i < len; i++) {
-    start = holeIndices[i] * dim;
-    end = i < len - 1 ? holeIndices[i + 1] * dim : data.length;
-    list = linkedList(data, start, end, dim, false);
-    if (list === list.next)
-      list.steiner = true;
-    queue.push(getLeftmost(list));
-  }
-  queue.sort(compareX);
-  for (i = 0; i < queue.length; i++) {
-    outerNode = eliminateHole(queue[i], outerNode);
-  }
-  return outerNode;
-}
-function compareX(a, b) {
-  return a.x - b.x;
-}
-function eliminateHole(hole, outerNode) {
-  const bridge = findHoleBridge(hole, outerNode);
-  if (!bridge) {
-    return outerNode;
-  }
-  const bridgeReverse = splitPolygon(bridge, hole);
-  filterPoints(bridgeReverse, bridgeReverse.next);
-  return filterPoints(bridge, bridge.next);
-}
-function findHoleBridge(hole, outerNode) {
-  let p = outerNode, qx = -Infinity, m;
-  const hx = hole.x, hy = hole.y;
-  do {
-    if (hy <= p.y && hy >= p.next.y && p.next.y !== p.y) {
-      const x = p.x + (hy - p.y) * (p.next.x - p.x) / (p.next.y - p.y);
-      if (x <= hx && x > qx) {
-        qx = x;
-        m = p.x < p.next.x ? p : p.next;
-        if (x === hx)
-          return m;
-      }
-    }
-    p = p.next;
-  } while (p !== outerNode);
-  if (!m)
-    return null;
-  const stop = m, mx = m.x, my = m.y;
-  let tanMin = Infinity, tan;
-  p = m;
-  do {
-    if (hx >= p.x && p.x >= mx && hx !== p.x && pointInTriangle(hy < my ? hx : qx, hy, mx, my, hy < my ? qx : hx, hy, p.x, p.y)) {
-      tan = Math.abs(hy - p.y) / (hx - p.x);
-      if (locallyInside(p, hole) && (tan < tanMin || tan === tanMin && (p.x > m.x || p.x === m.x && sectorContainsSector(m, p)))) {
-        m = p;
-        tanMin = tan;
-      }
-    }
-    p = p.next;
-  } while (p !== stop);
-  return m;
-}
-function sectorContainsSector(m, p) {
-  return area(m.prev, m, p.prev) < 0 && area(p.next, m, m.next) < 0;
-}
-function indexCurve(start, minX, minY, invSize) {
-  let p = start;
-  do {
-    if (p.z === 0)
-      p.z = zOrder(p.x, p.y, minX, minY, invSize);
-    p.prevZ = p.prev;
-    p.nextZ = p.next;
-    p = p.next;
-  } while (p !== start);
-  p.prevZ.nextZ = null;
-  p.prevZ = null;
-  sortLinked(p);
-}
-function sortLinked(list) {
-  let i, p, q, e, tail, numMerges, pSize, qSize, inSize = 1;
-  do {
-    p = list;
-    list = null;
-    tail = null;
-    numMerges = 0;
-    while (p) {
-      numMerges++;
-      q = p;
-      pSize = 0;
-      for (i = 0; i < inSize; i++) {
-        pSize++;
-        q = q.nextZ;
-        if (!q)
-          break;
-      }
-      qSize = inSize;
-      while (pSize > 0 || qSize > 0 && q) {
-        if (pSize !== 0 && (qSize === 0 || !q || p.z <= q.z)) {
-          e = p;
-          p = p.nextZ;
-          pSize--;
-        } else {
-          e = q;
-          q = q.nextZ;
-          qSize--;
-        }
-        if (tail)
-          tail.nextZ = e;
-        else
-          list = e;
-        e.prevZ = tail;
-        tail = e;
-      }
-      p = q;
-    }
-    tail.nextZ = null;
-    inSize *= 2;
-  } while (numMerges > 1);
-  return list;
-}
-function zOrder(x, y, minX, minY, invSize) {
-  x = (x - minX) * invSize | 0;
-  y = (y - minY) * invSize | 0;
-  x = (x | x << 8) & 16711935;
-  x = (x | x << 4) & 252645135;
-  x = (x | x << 2) & 858993459;
-  x = (x | x << 1) & 1431655765;
-  y = (y | y << 8) & 16711935;
-  y = (y | y << 4) & 252645135;
-  y = (y | y << 2) & 858993459;
-  y = (y | y << 1) & 1431655765;
-  return x | y << 1;
-}
-function getLeftmost(start) {
-  let p = start, leftmost = start;
-  do {
-    if (p.x < leftmost.x || p.x === leftmost.x && p.y < leftmost.y)
-      leftmost = p;
-    p = p.next;
-  } while (p !== start);
-  return leftmost;
-}
-function pointInTriangle(ax, ay, bx, by, cx, cy, px2, py2) {
-  return (cx - px2) * (ay - py2) >= (ax - px2) * (cy - py2) && (ax - px2) * (by - py2) >= (bx - px2) * (ay - py2) && (bx - px2) * (cy - py2) >= (cx - px2) * (by - py2);
-}
-function isValidDiagonal(a, b) {
-  return a.next.i !== b.i && a.prev.i !== b.i && !intersectsPolygon(a, b) && // dones't intersect other edges
-  (locallyInside(a, b) && locallyInside(b, a) && middleInside(a, b) && // locally visible
-  (area(a.prev, a, b.prev) || area(a, b.prev, b)) || // does not create opposite-facing sectors
-  equals(a, b) && area(a.prev, a, a.next) > 0 && area(b.prev, b, b.next) > 0);
-}
-function area(p, q, r) {
-  return (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
-}
-function equals(p1, p2) {
-  return p1.x === p2.x && p1.y === p2.y;
-}
-function intersects(p1, q1, p2, q2) {
-  const o1 = sign(area(p1, q1, p2));
-  const o2 = sign(area(p1, q1, q2));
-  const o3 = sign(area(p2, q2, p1));
-  const o4 = sign(area(p2, q2, q1));
-  if (o1 !== o2 && o3 !== o4)
-    return true;
-  if (o1 === 0 && onSegment(p1, p2, q1))
-    return true;
-  if (o2 === 0 && onSegment(p1, q2, q1))
-    return true;
-  if (o3 === 0 && onSegment(p2, p1, q2))
-    return true;
-  if (o4 === 0 && onSegment(p2, q1, q2))
-    return true;
-  return false;
-}
-function onSegment(p, q, r) {
-  return q.x <= Math.max(p.x, r.x) && q.x >= Math.min(p.x, r.x) && q.y <= Math.max(p.y, r.y) && q.y >= Math.min(p.y, r.y);
-}
-function sign(num) {
-  return num > 0 ? 1 : num < 0 ? -1 : 0;
-}
-function intersectsPolygon(a, b) {
-  let p = a;
-  do {
-    if (p.i !== a.i && p.next.i !== a.i && p.i !== b.i && p.next.i !== b.i && intersects(p, p.next, a, b))
-      return true;
-    p = p.next;
-  } while (p !== a);
-  return false;
-}
-function locallyInside(a, b) {
-  return area(a.prev, a, a.next) < 0 ? area(a, b, a.next) >= 0 && area(a, a.prev, b) >= 0 : area(a, b, a.prev) < 0 || area(a, a.next, b) < 0;
-}
-function middleInside(a, b) {
-  let p = a, inside = false;
-  const px2 = (a.x + b.x) / 2, py2 = (a.y + b.y) / 2;
-  do {
-    if (p.y > py2 !== p.next.y > py2 && p.next.y !== p.y && px2 < (p.next.x - p.x) * (py2 - p.y) / (p.next.y - p.y) + p.x)
-      inside = !inside;
-    p = p.next;
-  } while (p !== a);
-  return inside;
-}
-function splitPolygon(a, b) {
-  const a2 = new Node(a.i, a.x, a.y), b2 = new Node(b.i, b.x, b.y), an = a.next, bp = b.prev;
-  a.next = b;
-  b.prev = a;
-  a2.next = an;
-  an.prev = a2;
-  b2.next = a2;
-  a2.prev = b2;
-  bp.next = b2;
-  b2.prev = bp;
-  return b2;
-}
-function insertNode(i, x, y, last) {
-  const p = new Node(i, x, y);
-  if (!last) {
-    p.prev = p;
-    p.next = p;
-  } else {
-    p.next = last.next;
-    p.prev = last;
-    last.next.prev = p;
-    last.next = p;
-  }
-  return p;
-}
-function removeNode(p) {
-  p.next.prev = p.prev;
-  p.prev.next = p.next;
-  if (p.prevZ)
-    p.prevZ.nextZ = p.nextZ;
-  if (p.nextZ)
-    p.nextZ.prevZ = p.prevZ;
-}
-function Node(i, x, y) {
-  this.i = i;
-  this.x = x;
-  this.y = y;
-  this.prev = null;
-  this.next = null;
-  this.z = 0;
-  this.prevZ = null;
-  this.nextZ = null;
-  this.steiner = false;
-}
-function signedArea(data, start, end, dim) {
-  let sum = 0;
-  for (let i = start, j = end - dim; i < end; i += dim) {
-    sum += (data[j] - data[i]) * (data[i + 1] + data[j + 1]);
-    j = i;
-  }
-  return sum;
-}
-var ShapeUtils = class _ShapeUtils {
-  // calculate area of the contour polygon
-  static area(contour) {
-    const n = contour.length;
-    let a = 0;
-    for (let p = n - 1, q = 0; q < n; p = q++) {
-      a += contour[p].x * contour[q].y - contour[q].x * contour[p].y;
-    }
-    return a * 0.5;
-  }
-  static isClockWise(pts) {
-    return _ShapeUtils.area(pts) < 0;
-  }
-  static triangulateShape(contour, holes) {
-    const vertices = [];
-    const holeIndices = [];
-    const faces = [];
-    removeDupEndPts(contour);
-    addContour(vertices, contour);
-    let holeIndex = contour.length;
-    holes.forEach(removeDupEndPts);
-    for (let i = 0; i < holes.length; i++) {
-      holeIndices.push(holeIndex);
-      holeIndex += holes[i].length;
-      addContour(vertices, holes[i]);
-    }
-    const triangles = Earcut.triangulate(vertices, holeIndices);
-    for (let i = 0; i < triangles.length; i += 3) {
-      faces.push(triangles.slice(i, i + 3));
-    }
-    return faces;
-  }
-};
-function removeDupEndPts(points) {
-  const l = points.length;
-  if (l > 2 && points[l - 1].equals(points[0])) {
-    points.pop();
-  }
-}
-function addContour(vertices, contour) {
-  for (let i = 0; i < contour.length; i++) {
-    vertices.push(contour[i].x);
-    vertices.push(contour[i].y);
-  }
-}
-var ShapeGeometry = class _ShapeGeometry extends BufferGeometry {
-  constructor(shapes = new Shape([new Vector2(0, 0.5), new Vector2(-0.5, -0.5), new Vector2(0.5, -0.5)]), curveSegments = 12) {
-    super();
-    this.type = "ShapeGeometry";
-    this.parameters = {
-      shapes,
-      curveSegments
-    };
-    const indices = [];
-    const vertices = [];
-    const normals = [];
-    const uvs = [];
-    let groupStart = 0;
-    let groupCount = 0;
-    if (Array.isArray(shapes) === false) {
-      addShape(shapes);
-    } else {
-      for (let i = 0; i < shapes.length; i++) {
-        addShape(shapes[i]);
-        this.addGroup(groupStart, groupCount, i);
-        groupStart += groupCount;
-        groupCount = 0;
-      }
-    }
-    this.setIndex(indices);
-    this.setAttribute("position", new Float32BufferAttribute(vertices, 3));
-    this.setAttribute("normal", new Float32BufferAttribute(normals, 3));
-    this.setAttribute("uv", new Float32BufferAttribute(uvs, 2));
-    function addShape(shape) {
-      const indexOffset = vertices.length / 3;
-      const points = shape.extractPoints(curveSegments);
-      let shapeVertices = points.shape;
-      const shapeHoles = points.holes;
-      if (ShapeUtils.isClockWise(shapeVertices) === false) {
-        shapeVertices = shapeVertices.reverse();
-      }
-      for (let i = 0, l = shapeHoles.length; i < l; i++) {
-        const shapeHole = shapeHoles[i];
-        if (ShapeUtils.isClockWise(shapeHole) === true) {
-          shapeHoles[i] = shapeHole.reverse();
-        }
-      }
-      const faces = ShapeUtils.triangulateShape(shapeVertices, shapeHoles);
-      for (let i = 0, l = shapeHoles.length; i < l; i++) {
-        const shapeHole = shapeHoles[i];
-        shapeVertices = shapeVertices.concat(shapeHole);
-      }
-      for (let i = 0, l = shapeVertices.length; i < l; i++) {
-        const vertex2 = shapeVertices[i];
-        vertices.push(vertex2.x, vertex2.y, 0);
-        normals.push(0, 0, 1);
-        uvs.push(vertex2.x, vertex2.y);
-      }
-      for (let i = 0, l = faces.length; i < l; i++) {
-        const face = faces[i];
-        const a = face[0] + indexOffset;
-        const b = face[1] + indexOffset;
-        const c = face[2] + indexOffset;
-        indices.push(a, b, c);
-        groupCount += 3;
-      }
-    }
-  }
-  copy(source) {
-    super.copy(source);
-    this.parameters = Object.assign({}, source.parameters);
-    return this;
-  }
-  toJSON() {
-    const data = super.toJSON();
-    const shapes = this.parameters.shapes;
-    return toJSON(shapes, data);
-  }
-  static fromJSON(data, shapes) {
-    const geometryShapes = [];
-    for (let j = 0, jl = data.shapes.length; j < jl; j++) {
-      const shape = shapes[data.shapes[j]];
-      geometryShapes.push(shape);
-    }
-    return new _ShapeGeometry(geometryShapes, data.curveSegments);
-  }
-};
-function toJSON(shapes, data) {
-  data.shapes = [];
-  if (Array.isArray(shapes)) {
-    for (let i = 0, l = shapes.length; i < l; i++) {
-      const shape = shapes[i];
-      data.shapes.push(shape.uuid);
-    }
-  } else {
-    data.shapes.push(shapes.uuid);
-  }
-  return data;
-}
 function convertArray(array, type, forceClone) {
   if (!array || // let 'undefined' and 'null' pass
   !forceClone && array.constructor === type)
@@ -44555,6 +42933,26 @@ StringKeyframeTrack.prototype.InterpolantFactoryMethodSmooth = void 0;
 var VectorKeyframeTrack = class extends KeyframeTrack {
 };
 VectorKeyframeTrack.prototype.ValueTypeName = "vector";
+var Cache = {
+  enabled: false,
+  files: {},
+  add: function(key, file) {
+    if (this.enabled === false)
+      return;
+    this.files[key] = file;
+  },
+  get: function(key) {
+    if (this.enabled === false)
+      return;
+    return this.files[key];
+  },
+  remove: function(key) {
+    delete this.files[key];
+  },
+  clear: function() {
+    this.files = {};
+  }
+};
 var LoadingManager = class {
   constructor(onLoad, onProgress, onError) {
     const scope = this;
@@ -44670,6 +43068,305 @@ var Loader = class {
   }
 };
 Loader.DEFAULT_MATERIAL_NAME = "__DEFAULT";
+var ImageLoader = class extends Loader {
+  constructor(manager) {
+    super(manager);
+  }
+  load(url, onLoad, onProgress, onError) {
+    if (this.path !== void 0)
+      url = this.path + url;
+    url = this.manager.resolveURL(url);
+    const scope = this;
+    const cached = Cache.get(url);
+    if (cached !== void 0) {
+      scope.manager.itemStart(url);
+      setTimeout(function() {
+        if (onLoad)
+          onLoad(cached);
+        scope.manager.itemEnd(url);
+      }, 0);
+      return cached;
+    }
+    const image = createElementNS("img");
+    function onImageLoad() {
+      removeEventListeners();
+      Cache.add(url, this);
+      if (onLoad)
+        onLoad(this);
+      scope.manager.itemEnd(url);
+    }
+    function onImageError(event) {
+      removeEventListeners();
+      if (onError)
+        onError(event);
+      scope.manager.itemError(url);
+      scope.manager.itemEnd(url);
+    }
+    function removeEventListeners() {
+      image.removeEventListener("load", onImageLoad, false);
+      image.removeEventListener("error", onImageError, false);
+    }
+    image.addEventListener("load", onImageLoad, false);
+    image.addEventListener("error", onImageError, false);
+    if (url.slice(0, 5) !== "data:") {
+      if (this.crossOrigin !== void 0)
+        image.crossOrigin = this.crossOrigin;
+    }
+    scope.manager.itemStart(url);
+    image.src = url;
+    return image;
+  }
+};
+var TextureLoader = class extends Loader {
+  constructor(manager) {
+    super(manager);
+  }
+  load(url, onLoad, onProgress, onError) {
+    const texture = new Texture();
+    const loader = new ImageLoader(this.manager);
+    loader.setCrossOrigin(this.crossOrigin);
+    loader.setPath(this.path);
+    loader.load(url, function(image) {
+      texture.image = image;
+      texture.needsUpdate = true;
+      if (onLoad !== void 0) {
+        onLoad(texture);
+      }
+    }, onProgress, onError);
+    return texture;
+  }
+};
+var Light = class extends Object3D {
+  constructor(color, intensity = 1) {
+    super();
+    this.isLight = true;
+    this.type = "Light";
+    this.color = new Color(color);
+    this.intensity = intensity;
+  }
+  dispose() {
+  }
+  copy(source, recursive) {
+    super.copy(source, recursive);
+    this.color.copy(source.color);
+    this.intensity = source.intensity;
+    return this;
+  }
+  toJSON(meta) {
+    const data = super.toJSON(meta);
+    data.object.color = this.color.getHex();
+    data.object.intensity = this.intensity;
+    if (this.groundColor !== void 0)
+      data.object.groundColor = this.groundColor.getHex();
+    if (this.distance !== void 0)
+      data.object.distance = this.distance;
+    if (this.angle !== void 0)
+      data.object.angle = this.angle;
+    if (this.decay !== void 0)
+      data.object.decay = this.decay;
+    if (this.penumbra !== void 0)
+      data.object.penumbra = this.penumbra;
+    if (this.shadow !== void 0)
+      data.object.shadow = this.shadow.toJSON();
+    return data;
+  }
+};
+var _projScreenMatrix$1 = /* @__PURE__ */ new Matrix4();
+var _lightPositionWorld$1 = /* @__PURE__ */ new Vector3();
+var _lookTarget$1 = /* @__PURE__ */ new Vector3();
+var LightShadow = class {
+  constructor(camera) {
+    this.camera = camera;
+    this.bias = 0;
+    this.normalBias = 0;
+    this.radius = 1;
+    this.blurSamples = 8;
+    this.mapSize = new Vector2(512, 512);
+    this.map = null;
+    this.mapPass = null;
+    this.matrix = new Matrix4();
+    this.autoUpdate = true;
+    this.needsUpdate = false;
+    this._frustum = new Frustum();
+    this._frameExtents = new Vector2(1, 1);
+    this._viewportCount = 1;
+    this._viewports = [
+      new Vector4(0, 0, 1, 1)
+    ];
+  }
+  getViewportCount() {
+    return this._viewportCount;
+  }
+  getFrustum() {
+    return this._frustum;
+  }
+  updateMatrices(light) {
+    const shadowCamera = this.camera;
+    const shadowMatrix = this.matrix;
+    _lightPositionWorld$1.setFromMatrixPosition(light.matrixWorld);
+    shadowCamera.position.copy(_lightPositionWorld$1);
+    _lookTarget$1.setFromMatrixPosition(light.target.matrixWorld);
+    shadowCamera.lookAt(_lookTarget$1);
+    shadowCamera.updateMatrixWorld();
+    _projScreenMatrix$1.multiplyMatrices(shadowCamera.projectionMatrix, shadowCamera.matrixWorldInverse);
+    this._frustum.setFromProjectionMatrix(_projScreenMatrix$1);
+    shadowMatrix.set(
+      0.5,
+      0,
+      0,
+      0.5,
+      0,
+      0.5,
+      0,
+      0.5,
+      0,
+      0,
+      0.5,
+      0.5,
+      0,
+      0,
+      0,
+      1
+    );
+    shadowMatrix.multiply(_projScreenMatrix$1);
+  }
+  getViewport(viewportIndex) {
+    return this._viewports[viewportIndex];
+  }
+  getFrameExtents() {
+    return this._frameExtents;
+  }
+  dispose() {
+    if (this.map) {
+      this.map.dispose();
+    }
+    if (this.mapPass) {
+      this.mapPass.dispose();
+    }
+  }
+  copy(source) {
+    this.camera = source.camera.clone();
+    this.bias = source.bias;
+    this.radius = source.radius;
+    this.mapSize.copy(source.mapSize);
+    return this;
+  }
+  clone() {
+    return new this.constructor().copy(this);
+  }
+  toJSON() {
+    const object = {};
+    if (this.bias !== 0)
+      object.bias = this.bias;
+    if (this.normalBias !== 0)
+      object.normalBias = this.normalBias;
+    if (this.radius !== 1)
+      object.radius = this.radius;
+    if (this.mapSize.x !== 512 || this.mapSize.y !== 512)
+      object.mapSize = this.mapSize.toArray();
+    object.camera = this.camera.toJSON(false).object;
+    delete object.camera.matrix;
+    return object;
+  }
+};
+var _projScreenMatrix = /* @__PURE__ */ new Matrix4();
+var _lightPositionWorld = /* @__PURE__ */ new Vector3();
+var _lookTarget = /* @__PURE__ */ new Vector3();
+var PointLightShadow = class extends LightShadow {
+  constructor() {
+    super(new PerspectiveCamera(90, 1, 0.5, 500));
+    this.isPointLightShadow = true;
+    this._frameExtents = new Vector2(4, 2);
+    this._viewportCount = 6;
+    this._viewports = [
+      // These viewports map a cube-map onto a 2D texture with the
+      // following orientation:
+      //
+      //  xzXZ
+      //   y Y
+      //
+      // X - Positive x direction
+      // x - Negative x direction
+      // Y - Positive y direction
+      // y - Negative y direction
+      // Z - Positive z direction
+      // z - Negative z direction
+      // positive X
+      new Vector4(2, 1, 1, 1),
+      // negative X
+      new Vector4(0, 1, 1, 1),
+      // positive Z
+      new Vector4(3, 1, 1, 1),
+      // negative Z
+      new Vector4(1, 1, 1, 1),
+      // positive Y
+      new Vector4(3, 0, 1, 1),
+      // negative Y
+      new Vector4(1, 0, 1, 1)
+    ];
+    this._cubeDirections = [
+      new Vector3(1, 0, 0),
+      new Vector3(-1, 0, 0),
+      new Vector3(0, 0, 1),
+      new Vector3(0, 0, -1),
+      new Vector3(0, 1, 0),
+      new Vector3(0, -1, 0)
+    ];
+    this._cubeUps = [
+      new Vector3(0, 1, 0),
+      new Vector3(0, 1, 0),
+      new Vector3(0, 1, 0),
+      new Vector3(0, 1, 0),
+      new Vector3(0, 0, 1),
+      new Vector3(0, 0, -1)
+    ];
+  }
+  updateMatrices(light, viewportIndex = 0) {
+    const camera = this.camera;
+    const shadowMatrix = this.matrix;
+    const far = light.distance || camera.far;
+    if (far !== camera.far) {
+      camera.far = far;
+      camera.updateProjectionMatrix();
+    }
+    _lightPositionWorld.setFromMatrixPosition(light.matrixWorld);
+    camera.position.copy(_lightPositionWorld);
+    _lookTarget.copy(camera.position);
+    _lookTarget.add(this._cubeDirections[viewportIndex]);
+    camera.up.copy(this._cubeUps[viewportIndex]);
+    camera.lookAt(_lookTarget);
+    camera.updateMatrixWorld();
+    shadowMatrix.makeTranslation(-_lightPositionWorld.x, -_lightPositionWorld.y, -_lightPositionWorld.z);
+    _projScreenMatrix.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse);
+    this._frustum.setFromProjectionMatrix(_projScreenMatrix);
+  }
+};
+var PointLight = class extends Light {
+  constructor(color, intensity, distance = 0, decay = 2) {
+    super(color, intensity);
+    this.isPointLight = true;
+    this.type = "PointLight";
+    this.distance = distance;
+    this.decay = decay;
+    this.shadow = new PointLightShadow();
+  }
+  get power() {
+    return this.intensity * 4 * Math.PI;
+  }
+  set power(power) {
+    this.intensity = power / (4 * Math.PI);
+  }
+  dispose() {
+    this.shadow.dispose();
+  }
+  copy(source, recursive) {
+    super.copy(source, recursive);
+    this.distance = source.distance;
+    this.decay = source.decay;
+    this.shadow = source.shadow.clone();
+    return this;
+  }
+};
 var _RESERVED_CHARS_RE = "\\[\\]\\.:\\/";
 var _reservedRe = new RegExp("[" + _RESERVED_CHARS_RE + "]", "g");
 var _wordChar = "[^" + _RESERVED_CHARS_RE + "]";
@@ -45063,46 +43760,47 @@ if (typeof window !== "undefined") {
   }
 }
 
+// src/client/components/Planet.js
+var createPlanet = (radius, colormap) => {
+  const geometry = new SphereGeometry(radius, 32, 32);
+  const texture = new TextureLoader().load(colormap);
+  const material = new MeshBasicMaterial({ map: texture });
+  const planet = new Mesh(geometry, material);
+  const light = new PointLight(16777215, 1, 100);
+  light.position.set(10, 0, 0);
+  planet.add(light);
+  return planet;
+};
+var Planet_default = createPlanet;
+
 // src/client/components/Clock.js
-var createHand = (length, width, color) => {
-  const handShape = new Shape();
-  const radius = width / 2;
-  handShape.moveTo(0, -radius);
-  handShape.lineTo(0, length - radius);
-  handShape.absarc(radius, length - radius, radius, Math.PI, 0, true);
-  handShape.lineTo(2 * radius, -radius);
-  handShape.absarc(radius, -radius, radius, 0, Math.PI, true);
-  const geometry = new ShapeGeometry(handShape);
-  const material = new MeshBasicMaterial({ color });
-  const hand = new Mesh(geometry, material);
-  hand.geometry.translate(0, radius, 0);
-  return hand;
+var import_react = __toESM(require_react());
+var refresh = 100;
+var Clock = ({ scale }) => {
+  const [rot, setRot] = (0, import_react.useState)(0);
+  (0, import_react.useEffect)(() => {
+    const update = () => {
+      console.log("scale", scale);
+      setRot((p) => (p + 6 / refresh * scale) % 360);
+    };
+    const int = setInterval(update, 1e3 / refresh);
+    return () => clearInterval(int);
+  }, [scale]);
+  return /* @__PURE__ */ import_react.default.createElement("div", { className: "absolute bottom-5 right-5" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "relative w-40 h-40 p-3 border-[7px] border-solid border-nightfall-background rounded-full clock-shadow bg-nightfall-background" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "relative bg-nightfall-background overflow-hidden w-full h-full rounded-full" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "absolute h-full z-0 left-1/2 bg-nightfall-keyword w-1 clock-outface" }), /* @__PURE__ */ import_react.default.createElement("div", { className: "absolute h-full z-0 left-1/2 bg-nightfall-comment w-1 clock-tick1" }), /* @__PURE__ */ import_react.default.createElement("div", { className: "absolute h-full z-0 left-1/2 bg-nightfall-comment w-1 clock-tick2" }), /* @__PURE__ */ import_react.default.createElement("div", { className: "absolute h-full z-0 left-1/2 bg-nightfall-comment w-1 clock-tick3" }), /* @__PURE__ */ import_react.default.createElement("div", { className: "absolute h-full z-0 left-1/2 bg-nightfall-comment w-1 clock-tick4" }), /* @__PURE__ */ import_react.default.createElement("div", { className: "absolute h-full z-0 left-1/2 bg-nightfall-keyword w-1 clock-outfa" }), /* @__PURE__ */ import_react.default.createElement("div", { className: "absolute top-[10%] left-[10%] bg-nightfall-background w-4/5 h-4/5 rounded-full z-1 before:absolute before:top-[45%] before:left-[45%] before:w-3 before:h-3 before:rounded-full before:z-10 before:bg-nightfall-highlight" }), /* @__PURE__ */ import_react.default.createElement(
+    "div",
+    {
+      className: "absolute bottom-1/2 left-1/2 transform h-2/5 w-1 bg-nightfall-variable rounded-md z-50",
+      style: {
+        transform: `rotate(${rot}deg)`,
+        transformOrigin: "bottom"
+      }
+    }
+  ))));
 };
-var createClock = () => {
-  const clock = new Group();
-  const geometry = new CircleGeometry(2, 32);
-  const material = new MeshBasicMaterial({ color: 16777215 });
-  const face = new Mesh(geometry, material);
-  clock.add(face);
-  const second = createHand(1.8, 0.1, 16711680);
-  clock.add(second);
-  const centerGeometry = new CircleGeometry(0.1, 32);
-  const centerMaterial = new MeshBasicMaterial({ color: 0 });
-  const center = new Mesh(centerGeometry, centerMaterial);
-  clock.add(center);
-  second.rotation.z = 0;
-  const xOffset = window.innerWidth / 175;
-  const yOffset = -(window.innerHeight - 44) / 190;
-  clock.position.set(xOffset, yOffset, 0);
-  return {
-    clock,
-    second
-  };
-};
-var Clock_default = createClock;
+var Clock_default = Clock;
 
 // src/client/components/Slider.js
-var import_react = __toESM(require_react());
+var import_react2 = __toESM(require_react());
 var import_prop_types = __toESM(require_prop_types());
 var VelocitySlider = ({ currentVelocity, onVelocityChange }) => {
   let c;
@@ -45112,7 +43810,7 @@ var VelocitySlider = ({ currentVelocity, onVelocityChange }) => {
     c = "0";
   else
     c = `${currentVelocity}c`;
-  return /* @__PURE__ */ import_react.default.createElement("div", { className: "absolute top-5 right-5 text-center" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "italic text-nightfall-function" }, "Velocity Control"), /* @__PURE__ */ import_react.default.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "text-nightfall-string" }, "0"), /* @__PURE__ */ import_react.default.createElement(
+  return /* @__PURE__ */ import_react2.default.createElement("div", { className: "absolute top-5 right-5 text-center" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "italic text-nightfall-function" }, "Velocity Control"), /* @__PURE__ */ import_react2.default.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ import_react2.default.createElement("span", { className: "text-nightfall-string" }, "0"), /* @__PURE__ */ import_react2.default.createElement(
     "input",
     {
       type: "range",
@@ -45123,7 +43821,7 @@ var VelocitySlider = ({ currentVelocity, onVelocityChange }) => {
       onChange: (e) => onVelocityChange(parseFloat(e.target.value)),
       className: "slider-thumb slider-track"
     }
-  ), /* @__PURE__ */ import_react.default.createElement("span", { className: "text-nightfall-string" }, "c")), /* @__PURE__ */ import_react.default.createElement("div", { className: "text-nightfall-keyword" }, "Velocity: ", c));
+  ), /* @__PURE__ */ import_react2.default.createElement("span", { className: "text-nightfall-string" }, "c")), /* @__PURE__ */ import_react2.default.createElement("div", { className: "text-nightfall-keyword" }, "Velocity: ", c));
 };
 VelocitySlider.propTypes = {
   onVelocityChange: import_prop_types.default.func.isRequired
@@ -45133,15 +43831,14 @@ var Slider_default = VelocitySlider;
 // src/client/Demo.js
 var dilate = (v) => Math.sqrt(1 - Math.pow(v, 2));
 var Three = () => {
-  const mountRef = (0, import_react2.useRef)(null);
-  let ss;
-  const [velocity, setVelocity] = (0, import_react2.useState)(0);
-  let factor = (0, import_react2.useRef)(1);
+  const mountRef = (0, import_react3.useRef)(null);
+  const [velocity, setVelocity] = (0, import_react3.useState)(0);
+  let factor = (0, import_react3.useRef)(1);
   const handleVelocity = (value) => {
     factor.current = dilate(value);
     setVelocity(value);
   };
-  (0, import_react2.useEffect)(() => {
+  (0, import_react3.useEffect)(() => {
     const scene = new Scene();
     scene.background = new Color(1842726);
     const camera = new PerspectiveCamera(
@@ -45153,23 +43850,58 @@ var Three = () => {
     const renderer = new WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     mountRef.current.appendChild(renderer.domElement);
-    const geometry = new BoxGeometry();
-    const material = new MeshBasicMaterial({ color: 65280 });
-    const cube = new Mesh(geometry, material);
-    scene.add(cube);
-    const { clock, second } = Clock_default();
-    ss = second;
-    scene.add(clock);
-    let lastTime = Date.now();
-    camera.position.z = 10;
+    const distanceScale = 0.5;
+    const sizeScale = 0.1;
+    const mercury = Planet_default(0.38 * sizeScale, "./images/mercurymap.jpg");
+    mercury.position.z = 0.39 * distanceScale;
+    scene.add(mercury);
+    const venus = Planet_default(0.95 * sizeScale, "./images/venusmap.jpg");
+    venus.position.z = 0.72 * distanceScale;
+    scene.add(venus);
+    const earth = Planet_default(1 * sizeScale, "./images/earthmap.jpg");
+    earth.position.z = distanceScale;
+    scene.add(earth);
+    const mars = Planet_default(0.53 * sizeScale, "./images/marsmap.jpg");
+    mars.position.z = 1.52 * distanceScale;
+    scene.add(mars);
+    const jupiter = Planet_default(11.2 * sizeScale, "./images/jupitermap.jpg");
+    jupiter.position.z = 5.2 * distanceScale;
+    scene.add(jupiter);
+    const saturn = Planet_default(9.45 * sizeScale, "./images/saturnmap.jpg");
+    saturn.position.z = 9.58 * distanceScale;
+    scene.add(saturn);
+    const uranus = Planet_default(4 * sizeScale, "./images/uranusmap.jpg");
+    uranus.position.z = 19.2 * distanceScale;
+    scene.add(uranus);
+    const neptune = Planet_default(3.88 * sizeScale, "./images/neptunemap.jpg");
+    neptune.position.z = 30.05 * distanceScale;
+    scene.add(neptune);
+    const pluto = Planet_default(0.18 * sizeScale, "./images/plutomap.jpg");
+    pluto.position.z = 39.48 * distanceScale;
+    scene.add(pluto);
+    camera.position.set(0, 0, 10);
+    camera.lookAt(new Vector3(0, 0, 1));
+    console.log("camera", camera.position);
     const animate = () => {
       requestAnimationFrame(animate);
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-      const currentTime = Date.now();
-      const deltaTime = (currentTime - lastTime) / 1e3;
-      lastTime = currentTime;
-      ss.rotation.z -= deltaTime * factor.current * (2 * Math.PI / 60);
+      mercury.rotation.y += 2 * Math.PI / 1407.6 * factor.current;
+      venus.rotation.y += 2 * Math.PI / 5832.5 * factor.current;
+      earth.rotation.y += 2 * Math.PI / 86400 * factor.current;
+      mars.rotation.y += 2 * Math.PI / 88642.5 * factor.current;
+      jupiter.rotation.y += 2 * Math.PI / 35730 * factor.current;
+      saturn.rotation.y += 2 * Math.PI / 38760 * factor.current;
+      uranus.rotation.y += 2 * Math.PI / 30600 * factor.current;
+      neptune.rotation.y += 2 * Math.PI / 60225 * factor.current;
+      pluto.rotation.y += 2 * Math.PI / 90465 * factor.current;
+      mercury.scale.x = factor.current;
+      venus.scale.x = factor.current;
+      earth.scale.x = factor.current;
+      mars.scale.x = factor.current;
+      jupiter.scale.x = factor.current;
+      saturn.scale.x = factor.current;
+      uranus.scale.x = factor.current;
+      neptune.scale.x = factor.current;
+      pluto.scale.x = factor.current;
       renderer.render(scene, camera);
     };
     animate();
@@ -45177,22 +43909,23 @@ var Three = () => {
       mountRef.current.removeChild(renderer.domElement);
     };
   }, []);
-  return /* @__PURE__ */ import_react2.default.createElement("div", { ref: mountRef }, /* @__PURE__ */ import_react2.default.createElement(
+  console.log("factor", factor.current);
+  return /* @__PURE__ */ import_react3.default.createElement("div", { ref: mountRef }, /* @__PURE__ */ import_react3.default.createElement(
     Slider_default,
     {
       currentVelocity: velocity,
       onVelocityChange: handleVelocity
     }
-  ));
+  ), /* @__PURE__ */ import_react3.default.createElement(Clock_default, { scale: factor.current }));
 };
 var Demo_default = Three;
 
 // src/client/main.js
 var App = () => {
-  return /* @__PURE__ */ import_react3.default.createElement(Demo_default, null);
+  return /* @__PURE__ */ import_react4.default.createElement(Demo_default, null);
 };
 var root = (0, import_client.createRoot)(document.getElementById("root"));
-root.render(/* @__PURE__ */ import_react3.default.createElement(App, null));
+root.render(/* @__PURE__ */ import_react4.default.createElement(App, null));
 /*! Bundled license information:
 
 react/cjs/react.development.js:

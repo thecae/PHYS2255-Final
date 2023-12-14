@@ -1,52 +1,41 @@
-import * as THREE from "three";
+import React, { useState, useEffect } from "react";
 
-const createHand = (length, width, color) => {
-  const handShape = new THREE.Shape();
-  const radius = width / 2;
-  handShape.moveTo(0, -radius);
-  handShape.lineTo(0, length - radius);
-  handShape.absarc(radius, length - radius, radius, Math.PI, 0, true);
-  handShape.lineTo(2 * radius, -radius);
-  handShape.absarc(radius, -radius, radius, 0, Math.PI, true);
+const refresh = 100;
 
-  const geometry = new THREE.ShapeGeometry(handShape);
-  const material = new THREE.MeshBasicMaterial({ color });
-  const hand = new THREE.Mesh(geometry, material);
+const Clock = ({ scale }) => {
+  const [rot, setRot] = useState(0);
 
-  hand.geometry.translate(0, radius, 0);
-  return hand;
+  useEffect(() => {
+    const update = () => {
+      console.log("scale", scale);
+      setRot((p) => (p + 6 / refresh * scale) % 360);
+    };
+    const int = setInterval(update, 1000 / refresh);
+    return () => clearInterval(int);
+  }, [scale]);
+
+  return (
+    <div className="absolute bottom-5 right-5">
+      <div className="relative w-40 h-40 p-3 border-[7px] border-solid border-nightfall-background rounded-full clock-shadow bg-nightfall-background">
+        <div className="relative bg-nightfall-background overflow-hidden w-full h-full rounded-full">
+          <div className="absolute h-full z-0 left-1/2 bg-nightfall-keyword w-1 clock-outface"></div>
+          <div className="absolute h-full z-0 left-1/2 bg-nightfall-comment w-1 clock-tick1"></div>
+          <div className="absolute h-full z-0 left-1/2 bg-nightfall-comment w-1 clock-tick2"></div>
+          <div className="absolute h-full z-0 left-1/2 bg-nightfall-comment w-1 clock-tick3"></div>
+          <div className="absolute h-full z-0 left-1/2 bg-nightfall-comment w-1 clock-tick4"></div>
+          <div className="absolute h-full z-0 left-1/2 bg-nightfall-keyword w-1 clock-outfa"></div>
+          <div className="absolute top-[10%] left-[10%] bg-nightfall-background w-4/5 h-4/5 rounded-full z-1 before:absolute before:top-[45%] before:left-[45%] before:w-3 before:h-3 before:rounded-full before:z-10 before:bg-nightfall-highlight"></div>
+          <div
+            className="absolute bottom-1/2 left-1/2 transform h-2/5 w-1 bg-nightfall-variable rounded-md z-50"
+            style={{
+              transform: `rotate(${rot}deg)`,
+              transformOrigin: "bottom",
+            }}
+          ></div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-const createClock = () => {
-  const clock = new THREE.Group();
-
-  // clock face
-  const geometry = new THREE.CircleGeometry(2, 32);
-  const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-  const face = new THREE.Mesh(geometry, material);
-  clock.add(face);
-
-  // hands
-  const second = createHand(1.8, 0.1, 0xff0000);
-  clock.add(second);
-
-  // small circle at the base
-  const centerGeometry = new THREE.CircleGeometry(0.1, 32);
-  const centerMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
-  const center = new THREE.Mesh(centerGeometry, centerMaterial);
-  clock.add(center);
-
-  // set initial rotation
-  second.rotation.z = 0
-
-  const xOffset = window.innerWidth / 175;
-  const yOffset = -(window.innerHeight - 44) / 190;
-  clock.position.set(xOffset, yOffset, 0);
-
-  return {
-    clock: clock,
-    second: second,
-  };
-};
-
-export default createClock;
+export default Clock;
