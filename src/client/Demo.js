@@ -1,6 +1,7 @@
 // Demo.js
 import React, { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 // components
 import createPlanet from "./components/Planet.js";
@@ -35,8 +36,11 @@ const Three = () => {
     mountRef.current.appendChild(renderer.domElement);
 
     // Planet setup
-    const distanceScale = 0.5;
+    const distanceScale = 10;
     const sizeScale = 0.1;
+    const sun = createPlanet(10.9 * sizeScale, "./images/sunmap.jpg");
+    sun.position.z = 0;
+    scene.add(sun);
     const mercury = createPlanet(0.38 * sizeScale, "./images/mercurymap.jpg");
     mercury.position.z = 0.39 * distanceScale;
     scene.add(mercury);
@@ -49,7 +53,7 @@ const Three = () => {
     const mars = createPlanet(0.53 * sizeScale, "./images/marsmap.jpg");
     mars.position.z = 1.52 * distanceScale;
     scene.add(mars);
-    const jupiter = createPlanet(11.2 * sizeScale, "./images/jupitermap.jpg");
+    const jupiter = createPlanet(11.21* sizeScale, "./images/jupitermap.jpg");
     jupiter.position.z = 5.2 * distanceScale;
     scene.add(jupiter);
     const saturn = createPlanet(9.45 * sizeScale, "./images/saturnmap.jpg");
@@ -59,15 +63,21 @@ const Three = () => {
     uranus.position.z = 19.2 * distanceScale;
     scene.add(uranus);
     const neptune = createPlanet(3.88 * sizeScale, "./images/neptunemap.jpg");
-    neptune.position.z = 30.05 * distanceScale;
+    neptune.position.z = 30.18 * distanceScale;
     scene.add(neptune);
     const pluto = createPlanet(0.18 * sizeScale, "./images/plutomap.jpg");
     pluto.position.z = 39.48 * distanceScale;
     scene.add(pluto);
 
     // Camera setup
-    camera.position.set(0, 0, 10);
-    camera.lookAt(new THREE.Vector3(0, 0, 1));
+    camera.position.set(-2.9, 0.9, -0.35);
+    camera.lookAt(0, 0, 2.6);
+
+    // orbit controls
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.enableZoom = true;
 
     // Animation
     const animate = () => {
@@ -94,6 +104,8 @@ const Three = () => {
       uranus.scale.x = factor.current;
       neptune.scale.x = factor.current;
       pluto.scale.x = factor.current;
+
+      console.log('camera', camera.position);
 
       renderer.render(scene, camera);
     };
