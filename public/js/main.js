@@ -43779,10 +43779,7 @@ var refresh = 100;
 var Clock = ({ scale }) => {
   const [rot, setRot] = (0, import_react.useState)(0);
   (0, import_react.useEffect)(() => {
-    const update = () => {
-      console.log("scale", scale);
-      setRot((p) => (p + 6 / refresh * scale) % 360);
-    };
+    const update = () => setRot((p) => (p + 6 / refresh * scale) % 360);
     const int = setInterval(update, 1e3 / refresh);
     return () => clearInterval(int);
   }, [scale]);
@@ -43881,7 +43878,6 @@ var Three = () => {
     scene.add(pluto);
     camera.position.set(0, 0, 10);
     camera.lookAt(new Vector3(0, 0, 1));
-    console.log("camera", camera.position);
     const animate = () => {
       requestAnimationFrame(animate);
       mercury.rotation.y += 2 * Math.PI / 1407.6 * factor.current;
@@ -43909,7 +43905,6 @@ var Three = () => {
       mountRef.current.removeChild(renderer.domElement);
     };
   }, []);
-  console.log("factor", factor.current);
   return /* @__PURE__ */ import_react3.default.createElement("div", { ref: mountRef }, /* @__PURE__ */ import_react3.default.createElement(
     Slider_default,
     {

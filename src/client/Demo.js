@@ -68,7 +68,6 @@ const Three = () => {
     // Camera setup
     camera.position.set(0, 0, 10);
     camera.lookAt(new THREE.Vector3(0, 0, 1));
-    console.log("camera", camera.position);
 
     // Animation
     const animate = () => {
@@ -105,7 +104,6 @@ const Three = () => {
       mountRef.current.removeChild(renderer.domElement);
     };
   }, []);
-  console.log('factor', factor.current);
 
   return (
     <div ref={mountRef}>

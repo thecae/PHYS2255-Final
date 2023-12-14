@@ -6,10 +6,7 @@ const Clock = ({ scale }) => {
   const [rot, setRot] = useState(0);
 
   useEffect(() => {
-    const update = () => {
-      console.log("scale", scale);
-      setRot((p) => (p + 6 / refresh * scale) % 360);
-    };
+    const update = () => setRot((p) => (p + (6 / refresh) * scale) % 360);
     const int = setInterval(update, 1000 / refresh);
     return () => clearInterval(int);
   }, [scale]);
