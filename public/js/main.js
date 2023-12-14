@@ -42509,6 +42509,91 @@ var Scene = class extends Object3D {
     return data;
   }
 };
+var LineBasicMaterial = class extends Material {
+  constructor(parameters) {
+    super();
+    this.isLineBasicMaterial = true;
+    this.type = "LineBasicMaterial";
+    this.color = new Color(16777215);
+    this.map = null;
+    this.linewidth = 1;
+    this.linecap = "round";
+    this.linejoin = "round";
+    this.fog = true;
+    this.setValues(parameters);
+  }
+  copy(source) {
+    super.copy(source);
+    this.color.copy(source.color);
+    this.map = source.map;
+    this.linewidth = source.linewidth;
+    this.linecap = source.linecap;
+    this.linejoin = source.linejoin;
+    this.fog = source.fog;
+    return this;
+  }
+};
+var RingGeometry = class _RingGeometry extends BufferGeometry {
+  constructor(innerRadius = 0.5, outerRadius = 1, thetaSegments = 32, phiSegments = 1, thetaStart = 0, thetaLength = Math.PI * 2) {
+    super();
+    this.type = "RingGeometry";
+    this.parameters = {
+      innerRadius,
+      outerRadius,
+      thetaSegments,
+      phiSegments,
+      thetaStart,
+      thetaLength
+    };
+    thetaSegments = Math.max(3, thetaSegments);
+    phiSegments = Math.max(1, phiSegments);
+    const indices = [];
+    const vertices = [];
+    const normals = [];
+    const uvs = [];
+    let radius = innerRadius;
+    const radiusStep = (outerRadius - innerRadius) / phiSegments;
+    const vertex2 = new Vector3();
+    const uv = new Vector2();
+    for (let j = 0; j <= phiSegments; j++) {
+      for (let i = 0; i <= thetaSegments; i++) {
+        const segment = thetaStart + i / thetaSegments * thetaLength;
+        vertex2.x = radius * Math.cos(segment);
+        vertex2.y = radius * Math.sin(segment);
+        vertices.push(vertex2.x, vertex2.y, vertex2.z);
+        normals.push(0, 0, 1);
+        uv.x = (vertex2.x / outerRadius + 1) / 2;
+        uv.y = (vertex2.y / outerRadius + 1) / 2;
+        uvs.push(uv.x, uv.y);
+      }
+      radius += radiusStep;
+    }
+    for (let j = 0; j < phiSegments; j++) {
+      const thetaSegmentLevel = j * (thetaSegments + 1);
+      for (let i = 0; i < thetaSegments; i++) {
+        const segment = i + thetaSegmentLevel;
+        const a = segment;
+        const b = segment + thetaSegments + 1;
+        const c = segment + thetaSegments + 2;
+        const d = segment + 1;
+        indices.push(a, b, d);
+        indices.push(b, c, d);
+      }
+    }
+    this.setIndex(indices);
+    this.setAttribute("position", new Float32BufferAttribute(vertices, 3));
+    this.setAttribute("normal", new Float32BufferAttribute(normals, 3));
+    this.setAttribute("uv", new Float32BufferAttribute(uvs, 2));
+  }
+  copy(source) {
+    super.copy(source);
+    this.parameters = Object.assign({}, source.parameters);
+    return this;
+  }
+  static fromJSON(data) {
+    return new _RingGeometry(data.innerRadius, data.outerRadius, data.thetaSegments, data.phiSegments, data.thetaStart, data.thetaLength);
+  }
+};
 var SphereGeometry = class _SphereGeometry extends BufferGeometry {
   constructor(radius = 1, widthSegments = 32, heightSegments = 16, phiStart = 0, phiLength = Math.PI * 2, thetaStart = 0, thetaLength = Math.PI) {
     super();
@@ -42579,6 +42664,24 @@ var SphereGeometry = class _SphereGeometry extends BufferGeometry {
   }
   static fromJSON(data) {
     return new _SphereGeometry(data.radius, data.widthSegments, data.heightSegments, data.phiStart, data.phiLength, data.thetaStart, data.thetaLength);
+  }
+};
+var LineDashedMaterial = class extends LineBasicMaterial {
+  constructor(parameters) {
+    super();
+    this.isLineDashedMaterial = true;
+    this.type = "LineDashedMaterial";
+    this.scale = 1;
+    this.dashSize = 3;
+    this.gapSize = 1;
+    this.setValues(parameters);
+  }
+  copy(source) {
+    super.copy(source);
+    this.scale = source.scale;
+    this.dashSize = source.dashSize;
+    this.gapSize = source.gapSize;
+    return this;
   }
 };
 function convertArray(array, type, forceClone) {
@@ -44665,7 +44768,19 @@ var OrbitControls = class extends EventDispatcher {
 };
 
 // src/client/components/Planet.js
-var createPlanet = (radius, colormap) => {
+var createOrbit = (radius) => {
+  const geometry = new RingGeometry(radius - 0.01, radius, 90);
+  const material = new LineDashedMaterial({
+    color: 3093313,
+    dashSize: 0.1,
+    gapSize: 1,
+    side: DoubleSide
+  });
+  const orbit = new Mesh(geometry, material);
+  orbit.rotation.x = Math.PI / 2;
+  return orbit;
+};
+var createPlanet = (radius, colormap, orbit) => {
   const geometry = new SphereGeometry(radius, 32, 32);
   const texture = new TextureLoader().load(colormap);
   const material = new MeshBasicMaterial({ map: texture });
@@ -44673,7 +44788,8 @@ var createPlanet = (radius, colormap) => {
   const light = new PointLight(16777215, 1, 100);
   light.position.set(10, 0, 0);
   planet.add(light);
-  return planet;
+  const orbital = createOrbit(orbit);
+  return { planet, orbit: orbital };
 };
 var Planet_default = createPlanet;
 
@@ -44753,36 +44869,86 @@ var Three = () => {
     mountRef.current.appendChild(renderer.domElement);
     const distanceScale = 10;
     const sizeScale = 0.1;
-    const sun = Planet_default(10.9 * sizeScale, "./images/sunmap.jpg");
+    const { planet: sun } = Planet_default(
+      10.9 * sizeScale,
+      "./images/sunmap.jpg",
+      0
+    );
     sun.position.z = 0;
     scene.add(sun);
-    const mercury = Planet_default(0.38 * sizeScale, "./images/mercurymap.jpg");
+    const { planet: mercury, orbit: meOrbit } = Planet_default(
+      0.38 * sizeScale,
+      "./images/mercurymap.jpg",
+      0.39 * distanceScale
+    );
     mercury.position.z = 0.39 * distanceScale;
     scene.add(mercury);
-    const venus = Planet_default(0.95 * sizeScale, "./images/venusmap.jpg");
+    scene.add(meOrbit);
+    const { planet: venus, orbit: veOrbit } = Planet_default(
+      0.95 * sizeScale,
+      "./images/venusmap.jpg",
+      0.72 * distanceScale
+    );
     venus.position.z = 0.72 * distanceScale;
     scene.add(venus);
-    const earth = Planet_default(1 * sizeScale, "./images/earthmap.jpg");
+    scene.add(veOrbit);
+    const { planet: earth, orbit: eaOrbit } = Planet_default(
+      1 * sizeScale,
+      "./images/earthmap.jpg",
+      1 * distanceScale
+    );
     earth.position.z = distanceScale;
     scene.add(earth);
-    const mars = Planet_default(0.53 * sizeScale, "./images/marsmap.jpg");
+    scene.add(eaOrbit);
+    console.log("Earth orbit radius:", eaOrbit);
+    const { planet: mars, orbit: maOrbit } = Planet_default(
+      0.53 * sizeScale,
+      "./images/marsmap.jpg",
+      1.52 * distanceScale
+    );
     mars.position.z = 1.52 * distanceScale;
     scene.add(mars);
-    const jupiter = Planet_default(11.21 * sizeScale, "./images/jupitermap.jpg");
+    scene.add(maOrbit);
+    const { planet: jupiter, orbit: juOrbit } = Planet_default(
+      11.21 * sizeScale,
+      "./images/jupitermap.jpg",
+      5.2 * distanceScale
+    );
     jupiter.position.z = 5.2 * distanceScale;
     scene.add(jupiter);
-    const saturn = Planet_default(9.45 * sizeScale, "./images/saturnmap.jpg");
+    scene.add(juOrbit);
+    const { planet: saturn, orbit: saOrbit } = Planet_default(
+      9.45 * sizeScale,
+      "./images/saturnmap.jpg",
+      9.58 * distanceScale
+    );
     saturn.position.z = 9.58 * distanceScale;
     scene.add(saturn);
-    const uranus = Planet_default(4 * sizeScale, "./images/uranusmap.jpg");
+    scene.add(saOrbit);
+    const { planet: uranus, orbit: uaOrbit } = Planet_default(
+      4 * sizeScale,
+      "./images/uranusmap.jpg",
+      19.2 * distanceScale
+    );
     uranus.position.z = 19.2 * distanceScale;
     scene.add(uranus);
-    const neptune = Planet_default(3.88 * sizeScale, "./images/neptunemap.jpg");
+    scene.add(uaOrbit);
+    const { planet: neptune, orbit: neOrbit } = Planet_default(
+      3.88 * sizeScale,
+      "./images/neptunemap.jpg",
+      30.18 * distanceScale
+    );
     neptune.position.z = 30.18 * distanceScale;
     scene.add(neptune);
-    const pluto = Planet_default(0.18 * sizeScale, "./images/plutomap.jpg");
+    scene.add(neOrbit);
+    const { planet: pluto, orbit: plOrbit } = Planet_default(
+      0.18 * sizeScale,
+      "./images/plutomap.jpg",
+      39.48 * distanceScale
+    );
     pluto.position.z = 39.48 * distanceScale;
     scene.add(pluto);
+    scene.add(plOrbit);
     camera.position.set(-2.9, 0.9, -0.35);
     camera.lookAt(0, 0, 2.6);
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -44791,6 +44957,7 @@ var Three = () => {
     controls.enableZoom = true;
     const animate = () => {
       requestAnimationFrame(animate);
+      sun.rotation.y += 2 * Math.PI / 86400 * factor.current;
       mercury.rotation.y += 2 * Math.PI / 1407.6 * factor.current;
       venus.rotation.y += 2 * Math.PI / 5832.5 * factor.current;
       earth.rotation.y += 2 * Math.PI / 86400 * factor.current;
@@ -44800,16 +44967,43 @@ var Three = () => {
       uranus.rotation.y += 2 * Math.PI / 30600 * factor.current;
       neptune.rotation.y += 2 * Math.PI / 60225 * factor.current;
       pluto.rotation.y += 2 * Math.PI / 90465 * factor.current;
+      sun.scale.x = factor.current;
       mercury.scale.x = factor.current;
+      meOrbit.scale.x = factor.current;
       venus.scale.x = factor.current;
+      veOrbit.scale.x = factor.current;
       earth.scale.x = factor.current;
+      eaOrbit.scale.x = factor.current;
       mars.scale.x = factor.current;
+      maOrbit.scale.x = factor.current;
       jupiter.scale.x = factor.current;
+      juOrbit.scale.x = factor.current;
       saturn.scale.x = factor.current;
+      saOrbit.scale.x = factor.current;
       uranus.scale.x = factor.current;
+      uaOrbit.scale.x = factor.current;
       neptune.scale.x = factor.current;
+      neOrbit.scale.x = factor.current;
       pluto.scale.x = factor.current;
-      console.log("camera", camera.position);
+      plOrbit.scale.x = factor.current;
+      mercury.position.x = Math.cos(4e-3 * factor.current) * 0.39 * distanceScale * factor.current;
+      mercury.position.z = Math.sin(4e-3 * factor.current) * 0.39 * distanceScale;
+      venus.position.x = Math.cos(35e-4 * factor.current) * 0.72 * distanceScale * factor.current;
+      venus.position.z = Math.sin(35e-4 * factor.current) * 0.72 * distanceScale;
+      earth.position.x = Math.cos(3e-3 * factor.current) * distanceScale * factor.current;
+      earth.position.z = Math.sin(3e-3 * factor.current) * distanceScale;
+      mars.position.x = Math.cos(25e-4 * factor.current) * 1.52 * distanceScale * factor.current;
+      mars.position.z = Math.sin(25e-4 * factor.current) * 1.52 * distanceScale;
+      jupiter.position.x = Math.cos(1e-3 * factor.current) * 5.2 * distanceScale * factor.current;
+      jupiter.position.z = Math.sin(1e-3 * factor.current) * 5.2 * distanceScale;
+      saturn.position.x = Math.cos(9e-4 * factor.current) * 9.58 * distanceScale * factor.current;
+      saturn.position.z = Math.sin(9e-4 * factor.current) * 9.58 * distanceScale;
+      uranus.position.x = Math.cos(7e-4 * factor.current) * 19.2 * distanceScale * factor.current;
+      uranus.position.z = Math.sin(7e-4 * factor.current) * 19.2 * distanceScale;
+      neptune.position.x = Math.cos(5e-4 * factor.current) * 30.18 * distanceScale * factor.current;
+      neptune.position.z = Math.sin(5e-4 * factor.current) * 30.18 * distanceScale;
+      pluto.position.x = Math.cos(4e-4 * factor.current) * 39.48 * distanceScale * factor.current;
+      pluto.position.z = Math.sin(4e-4 * factor.current) * 39.48 * distanceScale;
       renderer.render(scene, camera);
     };
     animate();

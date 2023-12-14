@@ -38,36 +38,86 @@ const Three = () => {
     // Planet setup
     const distanceScale = 10;
     const sizeScale = 0.1;
-    const sun = createPlanet(10.9 * sizeScale, "./images/sunmap.jpg");
+    const { planet: sun } = createPlanet(
+      10.9 * sizeScale,
+      "./images/sunmap.jpg",
+      0
+    );
     sun.position.z = 0;
     scene.add(sun);
-    const mercury = createPlanet(0.38 * sizeScale, "./images/mercurymap.jpg");
+    const { planet: mercury, orbit: meOrbit } = createPlanet(
+      0.38 * sizeScale,
+      "./images/mercurymap.jpg",
+      0.39 * distanceScale
+    );
     mercury.position.z = 0.39 * distanceScale;
     scene.add(mercury);
-    const venus = createPlanet(0.95 * sizeScale, "./images/venusmap.jpg");
+    scene.add(meOrbit);
+    const { planet: venus, orbit: veOrbit } = createPlanet(
+      0.95 * sizeScale,
+      "./images/venusmap.jpg",
+      0.72 * distanceScale
+    );
     venus.position.z = 0.72 * distanceScale;
     scene.add(venus);
-    const earth = createPlanet(1 * sizeScale, "./images/earthmap.jpg");
+    scene.add(veOrbit);
+    const { planet: earth, orbit: eaOrbit } = createPlanet(
+      1 * sizeScale,
+      "./images/earthmap.jpg",
+      1 * distanceScale
+    );
     earth.position.z = distanceScale;
     scene.add(earth);
-    const mars = createPlanet(0.53 * sizeScale, "./images/marsmap.jpg");
+    scene.add(eaOrbit);
+    console.log("Earth orbit radius:", eaOrbit);
+    const { planet: mars, orbit: maOrbit } = createPlanet(
+      0.53 * sizeScale,
+      "./images/marsmap.jpg",
+      1.52 * distanceScale
+    );
     mars.position.z = 1.52 * distanceScale;
     scene.add(mars);
-    const jupiter = createPlanet(11.21* sizeScale, "./images/jupitermap.jpg");
+    scene.add(maOrbit);
+    const { planet: jupiter, orbit: juOrbit } = createPlanet(
+      11.21 * sizeScale,
+      "./images/jupitermap.jpg",
+      5.2 * distanceScale
+    );
     jupiter.position.z = 5.2 * distanceScale;
     scene.add(jupiter);
-    const saturn = createPlanet(9.45 * sizeScale, "./images/saturnmap.jpg");
+    scene.add(juOrbit);
+    const { planet: saturn, orbit: saOrbit } = createPlanet(
+      9.45 * sizeScale,
+      "./images/saturnmap.jpg",
+      9.58 * distanceScale
+    );
     saturn.position.z = 9.58 * distanceScale;
     scene.add(saturn);
-    const uranus = createPlanet(4 * sizeScale, "./images/uranusmap.jpg");
+    scene.add(saOrbit);
+    const { planet: uranus, orbit: uaOrbit } = createPlanet(
+      4 * sizeScale,
+      "./images/uranusmap.jpg",
+      19.2 * distanceScale
+    );
     uranus.position.z = 19.2 * distanceScale;
     scene.add(uranus);
-    const neptune = createPlanet(3.88 * sizeScale, "./images/neptunemap.jpg");
+    scene.add(uaOrbit);
+    const { planet: neptune, orbit: neOrbit } = createPlanet(
+      3.88 * sizeScale,
+      "./images/neptunemap.jpg",
+      30.18 * distanceScale
+    );
     neptune.position.z = 30.18 * distanceScale;
     scene.add(neptune);
-    const pluto = createPlanet(0.18 * sizeScale, "./images/plutomap.jpg");
+    scene.add(neOrbit);
+    const { planet: pluto, orbit: plOrbit } = createPlanet(
+      0.18 * sizeScale,
+      "./images/plutomap.jpg",
+      39.48 * distanceScale
+    );
     pluto.position.z = 39.48 * distanceScale;
     scene.add(pluto);
+    scene.add(plOrbit);
 
     // Camera setup
     camera.position.set(-2.9, 0.9, -0.35);
@@ -84,6 +134,7 @@ const Three = () => {
       requestAnimationFrame(animate);
 
       // planet rotation
+      sun.rotation.y += ((2 * Math.PI) / 86400) * factor.current;
       mercury.rotation.y += ((2 * Math.PI) / 1407.6) * factor.current;
       venus.rotation.y += ((2 * Math.PI) / 5832.5) * factor.current;
       earth.rotation.y += ((2 * Math.PI) / 86400) * factor.current;
@@ -95,17 +146,83 @@ const Three = () => {
       pluto.rotation.y += ((2 * Math.PI) / 90465) * factor.current;
 
       // planet speed dilation
+      sun.scale.x = factor.current;
       mercury.scale.x = factor.current;
+      meOrbit.scale.x = factor.current;
       venus.scale.x = factor.current;
+      veOrbit.scale.x = factor.current;
       earth.scale.x = factor.current;
+      eaOrbit.scale.x = factor.current;
       mars.scale.x = factor.current;
+      maOrbit.scale.x = factor.current;
       jupiter.scale.x = factor.current;
+      juOrbit.scale.x = factor.current;
       saturn.scale.x = factor.current;
+      saOrbit.scale.x = factor.current;
       uranus.scale.x = factor.current;
+      uaOrbit.scale.x = factor.current;
       neptune.scale.x = factor.current;
+      neOrbit.scale.x = factor.current;
       pluto.scale.x = factor.current;
+      plOrbit.scale.x = factor.current;
 
-      console.log('camera', camera.position);
+      // planet revolution
+      mercury.position.x =
+        Math.cos(0.004 * factor.current) *
+        0.39 *
+        distanceScale *
+        factor.current;
+      mercury.position.z =
+        Math.sin(0.004 * factor.current) * 0.39 * distanceScale;
+      venus.position.x =
+        Math.cos(0.0035 * factor.current) *
+        0.72 *
+        distanceScale *
+        factor.current;
+      venus.position.z =
+        Math.sin(0.0035 * factor.current) * 0.72 * distanceScale;
+      earth.position.x =
+        Math.cos(0.003 * factor.current) * distanceScale * factor.current;
+      earth.position.z = Math.sin(0.003 * factor.current) * distanceScale;
+      mars.position.x =
+        Math.cos(0.0025 * factor.current) *
+        1.52 *
+        distanceScale *
+        factor.current;
+      mars.position.z =
+        Math.sin(0.0025 * factor.current) * 1.52 * distanceScale;
+      jupiter.position.x =
+        Math.cos(0.001 * factor.current) * 5.2 * distanceScale * factor.current;
+      jupiter.position.z =
+        Math.sin(0.001 * factor.current) * 5.2 * distanceScale;
+      saturn.position.x =
+        Math.cos(0.0009 * factor.current) *
+        9.58 *
+        distanceScale *
+        factor.current;
+      saturn.position.z =
+        Math.sin(0.0009 * factor.current) * 9.58 * distanceScale;
+      uranus.position.x =
+        Math.cos(0.0007 * factor.current) *
+        19.2 *
+        distanceScale *
+        factor.current;
+      uranus.position.z =
+        Math.sin(0.0007 * factor.current) * 19.2 * distanceScale;
+      neptune.position.x =
+        Math.cos(0.0005 * factor.current) *
+        30.18 *
+        distanceScale *
+        factor.current;
+      neptune.position.z =
+        Math.sin(0.0005 * factor.current) * 30.18 * distanceScale;
+      pluto.position.x =
+        Math.cos(0.0004 * factor.current) *
+        39.48 *
+        distanceScale *
+        factor.current;
+      pluto.position.z =
+        Math.sin(0.0004 * factor.current) * 39.48 * distanceScale;
 
       renderer.render(scene, camera);
     };
