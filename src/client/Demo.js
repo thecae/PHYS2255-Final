@@ -6,16 +6,19 @@ import * as THREE from "three";
 import createClock from "./components/Clock.js";
 import VelocitySlider from "./components/Slider.js";
 
+const dilate = (v) => Math.sqrt(1 - Math.pow(v, 2));
+
 const Three = () => {
   const mountRef = useRef(null);
   // clock storage
   let ss;
   // velocity storage
   const [velocity, setVelocity] = useState(0);
+  let factor = useRef(1);
 
   const handleVelocity = (value) => {
+    factor.current = dilate(value);
     setVelocity(value);
-    console.log("velocity", value);
   };
 
   useEffect(() => {
@@ -47,7 +50,7 @@ const Three = () => {
     camera.position.z = 10;
 
     // Animation
-    const animate = function () {
+    const animate = () => {
       requestAnimationFrame(animate);
 
       // Rotation
@@ -58,11 +61,10 @@ const Three = () => {
       const currentTime = Date.now();
       const deltaTime = (currentTime - lastTime) / 1000;
       lastTime = currentTime;
-      ss.rotation.z -= deltaTime * (2 * Math.PI / 60);
+      ss.rotation.z -= deltaTime * factor.current * ((2 * Math.PI) / 60);
 
       renderer.render(scene, camera);
     };
-
     animate();
 
     // Cleanup
@@ -73,7 +75,10 @@ const Three = () => {
 
   return (
     <div ref={mountRef}>
-      <VelocitySlider onVelocityChange={handleVelocity} />
+      <VelocitySlider
+        currentVelocity={velocity}
+        onVelocityChange={handleVelocity}
+      />
     </div>
   );
 };

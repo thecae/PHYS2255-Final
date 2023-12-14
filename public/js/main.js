@@ -45104,18 +45104,26 @@ var Clock_default = createClock;
 // src/client/components/Slider.js
 var import_react = __toESM(require_react());
 var import_prop_types = __toESM(require_prop_types());
-var VelocitySlider = ({ onVelocityChange }) => {
+var VelocitySlider = ({ currentVelocity, onVelocityChange }) => {
+  let c;
+  if (currentVelocity === 1)
+    c = "c";
+  else if (currentVelocity === 0)
+    c = "0";
+  else
+    c = `${currentVelocity}c`;
   return /* @__PURE__ */ import_react.default.createElement("div", { className: "absolute top-5 right-5 text-center" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "italic text-nightfall-function" }, "Velocity Control"), /* @__PURE__ */ import_react.default.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "text-nightfall-string" }, "0"), /* @__PURE__ */ import_react.default.createElement(
     "input",
     {
       type: "range",
       min: "0",
       max: "1",
-      step: "0.01",
+      step: "0.001",
+      defaultValue: 0,
       onChange: (e) => onVelocityChange(parseFloat(e.target.value)),
       className: "slider-thumb slider-track"
     }
-  ), /* @__PURE__ */ import_react.default.createElement("span", { className: "text-nightfall-string" }, "c")));
+  ), /* @__PURE__ */ import_react.default.createElement("span", { className: "text-nightfall-string" }, "c")), /* @__PURE__ */ import_react.default.createElement("div", { className: "text-nightfall-keyword" }, "Velocity: ", c));
 };
 VelocitySlider.propTypes = {
   onVelocityChange: import_prop_types.default.func.isRequired
@@ -45123,13 +45131,15 @@ VelocitySlider.propTypes = {
 var Slider_default = VelocitySlider;
 
 // src/client/Demo.js
+var dilate = (v) => Math.sqrt(1 - Math.pow(v, 2));
 var Three = () => {
   const mountRef = (0, import_react2.useRef)(null);
   let ss;
   const [velocity, setVelocity] = (0, import_react2.useState)(0);
+  let factor = (0, import_react2.useRef)(1);
   const handleVelocity = (value) => {
+    factor.current = dilate(value);
     setVelocity(value);
-    console.log("velocity", value);
   };
   (0, import_react2.useEffect)(() => {
     const scene = new Scene();
@@ -45152,14 +45162,14 @@ var Three = () => {
     scene.add(clock);
     let lastTime = Date.now();
     camera.position.z = 10;
-    const animate = function() {
+    const animate = () => {
       requestAnimationFrame(animate);
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.01;
       const currentTime = Date.now();
       const deltaTime = (currentTime - lastTime) / 1e3;
       lastTime = currentTime;
-      ss.rotation.z -= deltaTime * (2 * Math.PI / 60);
+      ss.rotation.z -= deltaTime * factor.current * (2 * Math.PI / 60);
       renderer.render(scene, camera);
     };
     animate();
@@ -45167,7 +45177,13 @@ var Three = () => {
       mountRef.current.removeChild(renderer.domElement);
     };
   }, []);
-  return /* @__PURE__ */ import_react2.default.createElement("div", { ref: mountRef }, /* @__PURE__ */ import_react2.default.createElement(Slider_default, { onVelocityChange: handleVelocity }));
+  return /* @__PURE__ */ import_react2.default.createElement("div", { ref: mountRef }, /* @__PURE__ */ import_react2.default.createElement(
+    Slider_default,
+    {
+      currentVelocity: velocity,
+      onVelocityChange: handleVelocity
+    }
+  ));
 };
 var Demo_default = Three;
 
