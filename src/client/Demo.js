@@ -7,11 +7,13 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import createPlanet from "./components/Planet.js";
 import Clock from "./components/Clock.js";
 import VelocitySlider from "./components/Slider.js";
+import Notify from "./components/Notify.js";
 
 const dilate = (v) => Math.sqrt(1 - Math.pow(v, 2));
 
 const Three = () => {
   const mountRef = useRef(null);
+  let [notify, setNotify] = useState(true);
   // velocity storage
   const [velocity, setVelocity] = useState(0);
   let factor = useRef(1);
@@ -235,6 +237,8 @@ const Three = () => {
   }, []);
 
   return (
+    <>
+    <Notify open={notify} onClose={() => setNotify(false)} />
     <div ref={mountRef}>
       <VelocitySlider
         currentVelocity={velocity}
@@ -242,6 +246,7 @@ const Three = () => {
       />
       <Clock scale={factor.current} />
     </div>
+    </>
   );
 };
 
