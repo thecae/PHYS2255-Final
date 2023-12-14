@@ -26,7 +26,7 @@ const Clock = ({ scale }) => {
           <div className="absolute h-full z-0 left-1/2 bg-nightfall-keyword w-1 clock-outfa"></div>
           <div className="absolute top-[10%] left-[10%] bg-nightfall-background w-4/5 h-4/5 rounded-full z-1 before:absolute before:top-[45%] before:left-[45%] before:w-3 before:h-3 before:rounded-full before:z-10 before:bg-nightfall-highlight"></div>
           <div
-            className="absolute bottom-1/2 left-1/2 transform h-2/5 w-1 bg-nightfall-variable rounded-md z-50"
+            className="absolute bottom-1/2 left-1/2 transform h-2/5 w-1 bg-nightfall-variable rounded-md z-[3]"
             style={{
               transform: `rotate(${rot}deg)`,
               transformOrigin: "bottom",
